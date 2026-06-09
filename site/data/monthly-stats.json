@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-09T20:56:15.344Z",
+  "generated_at": "2026-06-09T21:46:34.495Z",
   "source": "libinsight-ga",
   "reporting_month": {
     "year": 2026,
@@ -24,10 +24,939 @@
     "published_guides_change_percent": 0,
     "total_guides": 0
   },
-  "top_guides": [],
+  "top_guides": [
+    {
+      "guide_id": "1",
+      "title": "Search",
+      "url": "/srch.php",
+      "views": 2259,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 1,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "2",
+      "title": "Family Law - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 1080,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 2,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "3",
+      "title": "A-Z Databases",
+      "url": "/az.php",
+      "views": 641,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 3,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "4",
+      "title": "Research Guides Home",
+      "url": "/research",
+      "views": 523,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 4,
+      "subject": "General Research",
+      "updated": ""
+    },
+    {
+      "guide_id": "5",
+      "title": "Any Legal Issue - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 478,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 5,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "6",
+      "title": "Immigration Law - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 442,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 6,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "7",
+      "title": "Housing and Landlord-Tenant Law - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 296,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 7,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "8",
+      "title": "Employment Law - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 244,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 8,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "9",
+      "title": "#1: How To Read A Legal Citation - Locating Legal Information in Primary and Secondary Resources",
+      "url": "/c.php",
+      "views": 223,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 9,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "10",
+      "title": "ALL GUIDES Alphabetically",
+      "url": "/research",
+      "views": 208,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 10,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "11",
+      "title": "Bar Exam Sample Essays - Study Aids for Law Students",
+      "url": "/c.php",
+      "views": 192,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 11,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "12",
+      "title": "Main Sources to Cite - The Bluebook",
+      "url": "/c.php",
+      "views": 170,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 12,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "13",
+      "title": "Debt and Bankruptcy - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 168,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 13,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "14",
+      "title": "Estate Planning - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 140,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 14,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "15",
+      "title": "Criminal Law - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 134,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 15,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "16",
+      "title": "Small Claims - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 134,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 16,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "17",
+      "title": "Home Page - Free and Low-Cost Legal Resources in Utah",
+      "url": "/legal-resources",
+      "views": 123,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 17,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "18",
+      "title": "Cross-References - The Bluebook",
+      "url": "/c.php",
+      "views": 116,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 18,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "19",
+      "title": "Legal Resource Guides - Locating Legal Information in Primary and Secondary Resources",
+      "url": "/c.php",
+      "views": 104,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 19,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "20",
+      "title": "Disability Law - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 100,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 20,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "21",
+      "title": "#1A: Basic Legal Research Materials - Locating Legal Information in Primary and Secondary Resources",
+      "url": "/c.php",
+      "views": 98,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 21,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "22",
+      "title": "Civil Rights - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 96,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 22,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "23",
+      "title": "All Legal Resources - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 94,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 23,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "24",
+      "title": "The Thesis - Writing Academic Papers for Law School",
+      "url": "/c.php",
+      "views": 87,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 24,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "25",
+      "title": "Definitions - Conflict of Laws",
+      "url": "/conflicts/definitions",
+      "views": 82,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 25,
+      "subject": "Other",
+      "updated": ""
+    }
+  ],
   "top_assets": [],
-  "category_views": [],
-  "weekly_trend": [],
+  "category_views": [
+    {
+      "category": "Other",
+      "views": 5311
+    },
+    {
+      "category": "Public Services",
+      "views": 3906
+    },
+    {
+      "category": "General Research",
+      "views": 692
+    },
+    {
+      "category": "FCIL",
+      "views": 92
+    },
+    {
+      "category": "Public Law",
+      "views": 49
+    }
+  ],
+  "weekly_trend": [
+    {
+      "label": "Week 1",
+      "range": "",
+      "views": 2259,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 2",
+      "range": "",
+      "views": 1080,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 3",
+      "range": "",
+      "views": 641,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 4",
+      "range": "",
+      "views": 523,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 5",
+      "range": "",
+      "views": 478,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 6",
+      "range": "",
+      "views": 442,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 7",
+      "range": "",
+      "views": 296,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 8",
+      "range": "",
+      "views": 244,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 9",
+      "range": "",
+      "views": 223,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 10",
+      "range": "",
+      "views": 208,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 11",
+      "range": "",
+      "views": 192,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 12",
+      "range": "",
+      "views": 170,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 13",
+      "range": "",
+      "views": 168,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 14",
+      "range": "",
+      "views": 140,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 15",
+      "range": "",
+      "views": 134,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 16",
+      "range": "",
+      "views": 134,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 17",
+      "range": "",
+      "views": 123,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 18",
+      "range": "",
+      "views": 116,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 19",
+      "range": "",
+      "views": 104,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 20",
+      "range": "",
+      "views": 100,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 21",
+      "range": "",
+      "views": 98,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 22",
+      "range": "",
+      "views": 96,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 23",
+      "range": "",
+      "views": 94,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 24",
+      "range": "",
+      "views": 87,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 25",
+      "range": "",
+      "views": 82,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 26",
+      "range": "",
+      "views": 81,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 27",
+      "range": "",
+      "views": 74,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 28",
+      "range": "",
+      "views": 72,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 29",
+      "range": "",
+      "views": 71,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 30",
+      "range": "",
+      "views": 70,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 31",
+      "range": "",
+      "views": 70,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 32",
+      "range": "",
+      "views": 60,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 33",
+      "range": "",
+      "views": 56,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 34",
+      "range": "",
+      "views": 52,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 35",
+      "range": "",
+      "views": 50,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 36",
+      "range": "",
+      "views": 50,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 37",
+      "range": "",
+      "views": 49,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 38",
+      "range": "",
+      "views": 48,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 39",
+      "range": "",
+      "views": 48,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 40",
+      "range": "",
+      "views": 45,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 41",
+      "range": "",
+      "views": 44,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 42",
+      "range": "",
+      "views": 44,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 43",
+      "range": "",
+      "views": 44,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 44",
+      "range": "",
+      "views": 41,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 45",
+      "range": "",
+      "views": 40,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 46",
+      "range": "",
+      "views": 38,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 47",
+      "range": "",
+      "views": 38,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 48",
+      "range": "",
+      "views": 25,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 49",
+      "range": "",
+      "views": 25,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 50",
+      "range": "",
+      "views": 24,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 51",
+      "range": "",
+      "views": 20,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 52",
+      "range": "",
+      "views": 19,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 53",
+      "range": "",
+      "views": 19,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 54",
+      "range": "",
+      "views": 19,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 55",
+      "range": "",
+      "views": 19,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 56",
+      "range": "",
+      "views": 18,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 57",
+      "range": "",
+      "views": 17,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 58",
+      "range": "",
+      "views": 14,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 59",
+      "range": "",
+      "views": 14,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 60",
+      "range": "",
+      "views": 14,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 61",
+      "range": "",
+      "views": 14,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 62",
+      "range": "",
+      "views": 11,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 63",
+      "range": "",
+      "views": 11,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 64",
+      "range": "",
+      "views": 10,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 65",
+      "range": "",
+      "views": 10,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 66",
+      "range": "",
+      "views": 10,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 67",
+      "range": "",
+      "views": 10,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 68",
+      "range": "",
+      "views": 10,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 69",
+      "range": "",
+      "views": 10,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 70",
+      "range": "",
+      "views": 10,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 71",
+      "range": "",
+      "views": 10,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 72",
+      "range": "",
+      "views": 10,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 73",
+      "range": "",
+      "views": 10,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 74",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 75",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 76",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 77",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 78",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 79",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 80",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 81",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 82",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 83",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 84",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 85",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 86",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 87",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 88",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 89",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 90",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 91",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 92",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 93",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 94",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 95",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 96",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 97",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 98",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 99",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 100",
+      "range": "",
+      "views": 8,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 101",
+      "range": "",
+      "views": 8,
+      "previous_views": 0
+    }
+  ],
   "updates": [],
   "methodology": "Guide views are counted when a guide page is loaded. Asset clicks are counted when users follow links to reusable LibGuides assets or external resources.",
   "privacy": "This dashboard reports aggregate, de-identified usage data only. No personal identifiers are collected or displayed."

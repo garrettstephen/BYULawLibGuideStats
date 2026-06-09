@@ -67,6 +67,53 @@ function endpointUrl(endpoint, config, reportMonth) {
   return url;
 }
 
+async function getGoogleAccessToken(clientId, clientSecret, refreshToken) {
+  const r = await fetch("https://oauth2.googleapis.com/token", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({ grant_type: "refresh_token", refresh_token: refreshToken, client_id: clientId, client_secret: clientSecret })
+  });
+  const t = await r.json();
+  if (!t.access_token) throw new Error(`Google token refresh failed: ${t.error} — ${t.error_description}`);
+  return t.access_token;
+}
+
+async function fetchGa4Pages(propertyId, accessToken, from, to, limit = 30) {
+  const r = await fetch(`https://analyticsdata.googleapis.com/v1beta/properties/${propertyId}:runReport`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      dateRanges: [{ startDate: from, endDate: to }],
+      dimensions: [{ name: "pageTitle" }, { name: "pagePath" }],
+      metrics: [{ name: "screenPageViews" }, { name: "activeUsers" }],
+      orderBys: [{ metric: { metricName: "screenPageViews" }, desc: true }],
+      limit
+    })
+  });
+  const d = await r.json();
+  if (d.error) {
+    if (d.error.code === 403) return null;
+    throw new Error(`GA4 error for property ${propertyId}: ${d.error.message}`);
+  }
+  return d.rows || [];
+}
+
+function cleanTitle(title) {
+  return String(title || "").replace(/ - Library Guides at BYU Law Library$/i, "").replace(/ - BYU Law Library LibGuides$/i, "").trim() || "Untitled";
+}
+
+function inferSubject(title, path) {
+  const t = (title + " " + path).toLowerCase();
+  if (t.includes("fcil") || t.includes("foreign") || t.includes("international")) return "FCIL";
+  if (t.includes("family") || t.includes("landlord") || t.includes("housing") || t.includes("immigration") || t.includes("legal aid") || t.includes("low-cost") || t.includes("free and")) return "Public Services";
+  if (t.includes("research guide") || t.includes("home") || t.includes("getting started")) return "General Research";
+  if (t.includes("criminal") || t.includes("tort") || t.includes("civil")) return "Litigation";
+  if (t.includes("business") || t.includes("corporate") || t.includes("tax")) return "Business & Tax";
+  if (t.includes("constitutional") || t.includes("admin") || t.includes("government")) return "Public Law";
+  if (t.includes("intellectual") || t.includes("patent") || t.includes("copyright")) return "IP Law";
+  return "Other";
+}
+
 async function authHeaders(config) {
   const headers = { Accept: "application/json" };
 
@@ -340,6 +387,14 @@ async function main() {
     guideMetadataEndpoint: env("LIBGUIDES_GUIDE_METADATA_ENDPOINT"),
     gaOverviewEndpoint: env("LIBINSIGHT_GA_OVERVIEW_ENDPOINT"),
     gaTrendsEndpoint: env("LIBINSIGHT_GA_TRENDS_ENDPOINT"),
+    googleClientId: env("GOOGLE_OAUTH_CLIENT_ID"),
+    googleClientSecret: env("GOOGLE_OAUTH_CLIENT_SECRET"),
+    googleRefreshToken: env("GOOGLE_OAUTH_REFRESH_TOKEN"),
+    ga4Properties: [
+      env("GA4_PROPERTY_RESEARCH_GUIDES"),
+      env("GA4_PROPERTY_LIBGUIDES"),
+      env("GA4_PROPERTY_FCIL"),
+    ].filter(Boolean),
     siteParam: env("LIBGUIDES_SITE_PARAM", "site_id"),
     startParam: env("LIBGUIDES_START_PARAM", "start"),
     endParam: env("LIBGUIDES_END_PARAM", "end"),
@@ -397,6 +452,32 @@ async function main() {
     }
   }
 
+  // GA4 Data API — per-guide page breakdown for top guides table
+  if (config.googleClientId && config.googleClientSecret && config.googleRefreshToken && config.ga4Properties.length) {
+    const googleToken = await getGoogleAccessToken(config.googleClientId, config.googleClientSecret, config.googleRefreshToken);
+    const allRows = [];
+    for (const propId of config.ga4Properties) {
+      const rows = await fetchGa4Pages(propId, googleToken, reportMonth.start, reportMonth.end, 50);
+      if (rows) allRows.push(...rows);
+    }
+    if (allRows.length) {
+      // Aggregate by cleaned title (in case same guide appears across properties)
+      const byTitle = new Map();
+      for (const row of allRows) {
+        const rawTitle = row.dimensionValues[0].value;
+        const path = row.dimensionValues[1].value;
+        const views = Number(row.metricValues[0].value) || 0;
+        const users = Number(row.metricValues[1].value) || 0;
+        if (rawTitle === "(not set)" || views === 0) continue;
+        const title = cleanTitle(rawTitle);
+        const existing = byTitle.get(title);
+        if (existing) { existing.views += views; existing.users += users; }
+        else byTitle.set(title, { title, path, views, users, subject: inferSubject(rawTitle, path) });
+      }
+      requests.ga4Guides = [...byTitle.values()].sort((a, b) => b.views - a.views);
+    }
+  }
+
   const report = normalize(requests, reportMonth);
 
   // Merge GA data into summary if available
@@ -407,6 +488,30 @@ async function main() {
     report.summary.unique_users = ga.visitors;
     report.summary.unique_users_change_percent = percentChange(ga.visitors, ga.visitors_previous);
     report.source = "libinsight-ga";
+  }
+
+  // Inject GA4 per-guide data into report
+  if (requests.ga4Guides && requests.ga4Guides.length) {
+    report.top_guides = requests.ga4Guides.slice(0, 25).map((g, i) => ({
+      guide_id: String(i + 1),
+      title: g.title,
+      url: g.path,
+      views: g.views,
+      views_previous_month: 0,
+      change: 0,
+      change_percent: 0,
+      rank: i + 1,
+      subject: g.subject,
+      updated: ""
+    }));
+    // Rebuild category_views from actual guide subjects
+    const subjectTotals = new Map();
+    for (const g of requests.ga4Guides) {
+      subjectTotals.set(g.subject, (subjectTotals.get(g.subject) || 0) + g.views);
+    }
+    report.category_views = [...subjectTotals.entries()]
+      .map(([category, views]) => ({ category, views }))
+      .sort((a, b) => b.views - a.views);
   }
 
   // Published guide count from LibGuides dataset (today's snapshot)

@@ -6,5 +6,10 @@ node_modules/
 Thumbs.db
 __pycache__/
 *.pyc
+# Google service account credentials — never commit these
+*.json
+!site/data/*.json
+!package.json
+!package-lock.json
 # Root-level data copy (not used by GitHub Pages; site/data/ is the canonical path)
 /data/
