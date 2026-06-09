@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="BYU Law Library LibGuide monthly usage highlights — digital display.">
+    <title>BYU Law Library LibGuide Stats</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+
+    <!-- Fixed display shell -->
+    <div id="display-shell">
+
+      <!-- Top bar: always visible -->
+      <header id="display-header">
+        <div class="hdr-brand">
+          <span class="hdr-mark">BYU</span>
+          <span class="hdr-divider" aria-hidden="true"></span>
+          <span class="hdr-name">Law Library</span>
+          <span class="hdr-divider" aria-hidden="true"></span>
+          <span class="hdr-sub">LibGuide Stats</span>
+        </div>
+        <div class="hdr-right">
+          <span class="hdr-month" id="hdr-month">Loading&hellip;</span>
+          <nav class="panel-dots" id="panel-dots" aria-label="Panel indicators"></nav>
+        </div>
+      </header>
+
+      <!-- Cycling panels -->
+      <main id="panel-stage" aria-live="polite" aria-atomic="true"></main>
+
+      <!-- Bottom progress bar -->
+      <footer id="display-footer">
+        <div class="progress-track" role="progressbar" aria-label="Next slide in">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <span class="footer-label" id="footer-panel-label"></span>
+      </footer>
+
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

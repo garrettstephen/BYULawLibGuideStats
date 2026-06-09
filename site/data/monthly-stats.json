@@ -1,0 +1,34 @@
+{
+  "generated_at": "2026-06-09T20:56:15.344Z",
+  "source": "libinsight-ga",
+  "reporting_month": {
+    "year": 2026,
+    "month": 5,
+    "start": "2026-05-01",
+    "end": "2026-05-31",
+    "label": "May 2026",
+    "previous_label": "April 2026",
+    "previous_start": "2026-04-01",
+    "previous_end": "2026-04-30"
+  },
+  "summary": {
+    "guide_views": 12858,
+    "guide_views_change_percent": 145.1,
+    "unique_users": 3405,
+    "unique_users_change_percent": -6.4,
+    "asset_clicks": 0,
+    "asset_clicks_change_percent": 0,
+    "average_time_on_guide": "Not tracked",
+    "average_time_change_percent": 0,
+    "published_guides": 0,
+    "published_guides_change_percent": 0,
+    "total_guides": 0
+  },
+  "top_guides": [],
+  "top_assets": [],
+  "category_views": [],
+  "weekly_trend": [],
+  "updates": [],
+  "methodology": "Guide views are counted when a guide page is loaded. Asset clicks are counted when users follow links to reusable LibGuides assets or external resources.",
+  "privacy": "This dashboard reports aggregate, de-identified usage data only. No personal identifiers are collected or displayed."
+}

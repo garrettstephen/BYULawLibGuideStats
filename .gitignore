@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+node_modules/
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+# Root-level data copy (not used by GitHub Pages; site/data/ is the canonical path)
+/data/
