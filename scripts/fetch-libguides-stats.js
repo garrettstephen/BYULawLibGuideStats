@@ -98,6 +98,44 @@ async function fetchGa4Pages(propertyId, accessToken, from, to, limit = 30) {
   return d.rows || [];
 }
 
+async function fetchGa4TopPages(propertyId, accessToken, from, to, dimensionFilter, limit = 30) {
+  const body = {
+    dateRanges: [{ startDate: from, endDate: to }],
+    dimensions: [{ name: "pagePath" }, { name: "pageTitle" }],
+    metrics: [{ name: "screenPageViews" }, { name: "activeUsers" }],
+    orderBys: [{ metric: { metricName: "screenPageViews" }, desc: true }],
+    limit
+  };
+  if (dimensionFilter) body.dimensionFilter = dimensionFilter;
+  const r = await fetch(`https://analyticsdata.googleapis.com/v1beta/properties/${propertyId}:runReport`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  });
+  const d = await r.json();
+  if (d.error) { if (d.error.code === 403) return null; throw new Error(`GA4 ${propertyId}: ${d.error.message}`); }
+  return d.rows || [];
+}
+
+function slugToTitle(slug) {
+  return slug.replace(/^\/|\/$/g, "").replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase()) || slug;
+}
+
+const HQ_SKIP = new Set(["/", "/about/", "/feed/", "/wp-login.php", "/sitemap.xml"]);
+function isHqArticle(path) {
+  if (HQ_SKIP.has(path)) return false;
+  if (path.startsWith("/category/") || path.startsWith("/tag/") || path.startsWith("/author/") || path.startsWith("/page/") || path.startsWith("/wp-")) return false;
+  return /^\/[a-z0-9-]+\/$/.test(path);
+}
+
+const DC_SKIP_PREFIXES = ["/do/", "/robots.txt", "/favicon"];
+const DC_CONTENT_PREFIXES = ["/lawreview/", "/clarkmemorandum/", "/elj/", "/faculty_scholarship/", "/law_faculty_scholarship/", "/student_scholarship/", "/bjell/", "/jrcls/"];
+function isDcContentItem(path) {
+  if (DC_SKIP_PREFIXES.some(p => path.startsWith(p))) return false;
+  if (path === "/" || path === "/index.html") return false;
+  return DC_CONTENT_PREFIXES.some(p => path.startsWith(p)) && path.length > 20;
+}
+
 function cleanTitle(title) {
   return String(title || "").replace(/ - Library Guides at BYU Law Library$/i, "").replace(/ - BYU Law Library LibGuides$/i, "").trim() || "Untitled";
 }
@@ -343,9 +381,81 @@ function normalize(raw, reportMonth) {
 async function writeReport(report) {
   await fs.mkdir(path.dirname(DATA_OUT), { recursive: true });
   await fs.mkdir(path.dirname(SITE_DATA_OUT), { recursive: true });
+
+  // Embed hidden_paths from hidden-paths.json so the public kiosk respects them
+  const hiddenPathsFile = path.join(path.dirname(SITE_DATA_OUT), "hidden-paths.json");
+  try {
+    report.hidden_paths = JSON.parse(await fs.readFile(hiddenPathsFile, "utf8"));
+  } catch (_) {
+    report.hidden_paths = { libguides: [], hunters_query: [], digital_commons: [] };
+  }
+
   const json = `${JSON.stringify(report, null, 2)}\n`;
   await fs.writeFile(DATA_OUT, json, "utf8");
   await fs.writeFile(SITE_DATA_OUT, json, "utf8");
+
+  // Save monthly archive (YYYY-MM.json)
+  const rm = report.reporting_month;
+  const archiveKey = `${rm.year}-${String(rm.month).padStart(2, "0")}`;
+  const archivePath = path.join(path.dirname(SITE_DATA_OUT), `${archiveKey}.json`);
+  await fs.writeFile(archivePath, json, "utf8");
+
+  // Update index.json
+  const indexPath = path.join(path.dirname(SITE_DATA_OUT), "index.json");
+  let index = { months: [] };
+  try { index = JSON.parse(await fs.readFile(indexPath, "utf8")); } catch (_) {}
+  if (!index.months.includes(archiveKey)) {
+    index.months.push(archiveKey);
+    index.months.sort();
+  }
+  await fs.writeFile(indexPath, `${JSON.stringify(index, null, 2)}\n`, "utf8");
+}
+
+async function fetchGa4Weekly(propertyIds, accessToken, from, to) {
+  const allDays = {};
+  for (const propId of propertyIds) {
+    const r = await fetch(`https://analyticsdata.googleapis.com/v1beta/properties/${propId}:runReport`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        dateRanges: [{ startDate: from, endDate: to }],
+        dimensions: [{ name: "date" }],
+        metrics: [{ name: "screenPageViews" }],
+        limit: 100
+      })
+    });
+    const d = await r.json();
+    if (d.error) continue;
+    for (const row of d.rows || []) {
+      const dateStr = row.dimensionValues[0].value; // YYYYMMDD
+      const views = parseInt(row.metricValues[0].value) || 0;
+      allDays[dateStr] = (allDays[dateStr] || 0) + views;
+    }
+  }
+  const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const start = new Date(`${from}T00:00:00Z`);
+  const end = new Date(`${to}T00:00:00Z`);
+  const weeks = [];
+  let wkStart = new Date(start);
+  let wkNum = 1;
+  while (wkStart <= end) {
+    const wkEnd = new Date(wkStart);
+    wkEnd.setUTCDate(wkEnd.getUTCDate() + 6);
+    if (wkEnd > end) wkEnd.setTime(end.getTime());
+    let views = 0;
+    for (const [ds, v] of Object.entries(allDays)) {
+      const y = parseInt(ds.slice(0, 4)), m = parseInt(ds.slice(4, 6)) - 1, d = parseInt(ds.slice(6, 8));
+      const dt = new Date(Date.UTC(y, m, d));
+      if (dt >= wkStart && dt <= wkEnd) views += v;
+    }
+    const s1 = MONTHS[wkStart.getUTCMonth()], d1 = wkStart.getUTCDate();
+    const s2 = MONTHS[wkEnd.getUTCMonth()], d2 = wkEnd.getUTCDate();
+    const range = s1 === s2 ? `${s1} ${d1}–${d2}` : `${s1} ${d1}–${s2} ${d2}`;
+    weeks.push({ label: `Wk ${wkNum}`, range, views, previous_views: 0 });
+    wkStart.setUTCDate(wkStart.getUTCDate() + 7);
+    wkNum++;
+  }
+  return weeks;
 }
 
 async function sampleReport() {
@@ -395,6 +505,8 @@ async function main() {
       env("GA4_PROPERTY_LIBGUIDES"),
       env("GA4_PROPERTY_FCIL"),
     ].filter(Boolean),
+    ga4HuntersQuery: env("GA4_PROPERTY_HUNTERS_QUERY"),
+    ga4DigitalCommons: env("GA4_PROPERTY_DIGITAL_COMMONS"),
     siteParam: env("LIBGUIDES_SITE_PARAM", "site_id"),
     startParam: env("LIBGUIDES_START_PARAM", "start"),
     endParam: env("LIBGUIDES_END_PARAM", "end"),
@@ -452,16 +564,20 @@ async function main() {
     }
   }
 
+  // Get Google OAuth token once — reuse for all GA4 calls
+  let googleToken = null;
+  if (config.googleClientId && config.googleClientSecret && config.googleRefreshToken) {
+    googleToken = await getGoogleAccessToken(config.googleClientId, config.googleClientSecret, config.googleRefreshToken);
+  }
+
   // GA4 Data API — per-guide page breakdown for top guides table
-  if (config.googleClientId && config.googleClientSecret && config.googleRefreshToken && config.ga4Properties.length) {
-    const googleToken = await getGoogleAccessToken(config.googleClientId, config.googleClientSecret, config.googleRefreshToken);
+  if (googleToken && config.ga4Properties.length) {
     const allRows = [];
     for (const propId of config.ga4Properties) {
       const rows = await fetchGa4Pages(propId, googleToken, reportMonth.start, reportMonth.end, 50);
       if (rows) allRows.push(...rows);
     }
     if (allRows.length) {
-      // Aggregate by cleaned title (in case same guide appears across properties)
       const byTitle = new Map();
       for (const row of allRows) {
         const rawTitle = row.dimensionValues[0].value;
@@ -475,6 +591,45 @@ async function main() {
         else byTitle.set(title, { title, path, views, users, subject: inferSubject(rawTitle, path) });
       }
       requests.ga4Guides = [...byTitle.values()].sort((a, b) => b.views - a.views);
+    }
+
+    // Real weekly trend from GA4 (date dimension, bucketed by week)
+    requests.weeklyTrend = await fetchGa4Weekly(config.ga4Properties, googleToken, reportMonth.start, reportMonth.end);
+  }
+
+  // Hunter's Query — top blog articles
+  if (googleToken && config.ga4HuntersQuery) {
+    const rows = await fetchGa4TopPages(config.ga4HuntersQuery, googleToken, reportMonth.start, reportMonth.end, null, 50);
+    if (rows) {
+      const n = (v) => { const x = Number(v); return Number.isFinite(x) ? x : 0; };
+      requests.huntersQuery = rows
+        .filter(row => isHqArticle(row.dimensionValues[0].value))
+        .map((row, i) => ({
+          rank: i + 1,
+          title: slugToTitle(row.dimensionValues[0].value),
+          path: row.dimensionValues[0].value,
+          views: n(row.metricValues[0].value),
+          users: n(row.metricValues[1].value)
+        }))
+        .slice(0, 15);
+    }
+  }
+
+  // Digital Commons — top content items
+  if (googleToken && config.ga4DigitalCommons) {
+    const rows = await fetchGa4TopPages(config.ga4DigitalCommons, googleToken, reportMonth.start, reportMonth.end, null, 200);
+    if (rows) {
+      const n = (v) => { const x = Number(v); return Number.isFinite(x) ? x : 0; };
+      requests.digitalCommons = rows
+        .filter(row => isDcContentItem(row.dimensionValues[0].value))
+        .map((row, i) => {
+          const path = row.dimensionValues[0].value;
+          const rawTitle = row.dimensionValues[1].value;
+          const title = rawTitle && rawTitle !== "(not set)" ? rawTitle.replace(/ \| BYU Law.*$/i, "").replace(/ \| Brigham Young.*$/i, "").trim() : slugToTitle(path);
+          const section = path.split("/")[1] || "other";
+          return { rank: i + 1, title, path, section, views: n(row.metricValues[0].value), users: n(row.metricValues[1].value) };
+        })
+        .slice(0, 20);
     }
   }
 
@@ -525,6 +680,12 @@ async function main() {
       report.summary.total_guides = snap.total_guide_count || 0;
     }
   }
+
+  if (requests.huntersQuery) report.hunters_query = { top_articles: requests.huntersQuery };
+  if (requests.digitalCommons) report.digital_commons = { top_items: requests.digitalCommons };
+
+  // Use real GA4 weekly data (overrides any bogus data from normalize())
+  if (requests.weeklyTrend) report.weekly_trend = requests.weeklyTrend;
 
   await writeReport(report);
   console.log("Wrote LibGuide stats data.");

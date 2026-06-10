@@ -9,6 +9,8 @@ __pycache__/
 # Google service account credentials — never commit these
 *.json
 !site/data/*.json
+!site/data/hidden-paths.json
+!site/data/index.json
 !package.json
 !package-lock.json
 # Root-level data copy (not used by GitHub Pages; site/data/ is the canonical path)

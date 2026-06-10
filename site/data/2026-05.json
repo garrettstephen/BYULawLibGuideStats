@@ -1,0 +1,1236 @@
+{
+  "generated_at": "2026-06-09T21:53:56.853Z",
+  "source": "libinsight-ga",
+  "reporting_month": {
+    "year": 2026,
+    "month": 5,
+    "start": "2026-05-01",
+    "end": "2026-05-31",
+    "label": "May 2026",
+    "previous_label": "April 2026",
+    "previous_start": "2026-04-01",
+    "previous_end": "2026-04-30"
+  },
+  "summary": {
+    "guide_views": 12858,
+    "guide_views_change_percent": 145.1,
+    "unique_users": 3405,
+    "unique_users_change_percent": -6.4,
+    "asset_clicks": 0,
+    "asset_clicks_change_percent": 0,
+    "average_time_on_guide": "Not tracked",
+    "average_time_change_percent": 0,
+    "published_guides": 0,
+    "published_guides_change_percent": 0,
+    "total_guides": 0
+  },
+  "top_guides": [
+    {
+      "guide_id": "1",
+      "title": "Search",
+      "url": "/srch.php",
+      "views": 2259,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 1,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "2",
+      "title": "Family Law - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 1080,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 2,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "3",
+      "title": "A-Z Databases",
+      "url": "/az.php",
+      "views": 641,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 3,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "4",
+      "title": "Research Guides Home",
+      "url": "/research",
+      "views": 523,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 4,
+      "subject": "General Research",
+      "updated": ""
+    },
+    {
+      "guide_id": "5",
+      "title": "Any Legal Issue - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 478,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 5,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "6",
+      "title": "Immigration Law - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 442,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 6,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "7",
+      "title": "Housing and Landlord-Tenant Law - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 296,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 7,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "8",
+      "title": "Employment Law - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 244,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 8,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "9",
+      "title": "#1: How To Read A Legal Citation - Locating Legal Information in Primary and Secondary Resources",
+      "url": "/c.php",
+      "views": 223,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 9,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "10",
+      "title": "ALL GUIDES Alphabetically",
+      "url": "/research",
+      "views": 208,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 10,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "11",
+      "title": "Bar Exam Sample Essays - Study Aids for Law Students",
+      "url": "/c.php",
+      "views": 192,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 11,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "12",
+      "title": "Main Sources to Cite - The Bluebook",
+      "url": "/c.php",
+      "views": 170,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 12,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "13",
+      "title": "Debt and Bankruptcy - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 168,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 13,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "14",
+      "title": "Estate Planning - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 140,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 14,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "15",
+      "title": "Criminal Law - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 134,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 15,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "16",
+      "title": "Small Claims - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 134,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 16,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "17",
+      "title": "Home Page - Free and Low-Cost Legal Resources in Utah",
+      "url": "/legal-resources",
+      "views": 123,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 17,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "18",
+      "title": "Cross-References - The Bluebook",
+      "url": "/c.php",
+      "views": 116,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 18,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "19",
+      "title": "Legal Resource Guides - Locating Legal Information in Primary and Secondary Resources",
+      "url": "/c.php",
+      "views": 104,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 19,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "20",
+      "title": "Disability Law - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 100,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 20,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "21",
+      "title": "#1A: Basic Legal Research Materials - Locating Legal Information in Primary and Secondary Resources",
+      "url": "/c.php",
+      "views": 98,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 21,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "22",
+      "title": "Civil Rights - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 96,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 22,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "23",
+      "title": "All Legal Resources - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 94,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 23,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "24",
+      "title": "The Thesis - Writing Academic Papers for Law School",
+      "url": "/c.php",
+      "views": 87,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 24,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "25",
+      "title": "Definitions - Conflict of Laws",
+      "url": "/conflicts/definitions",
+      "views": 82,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 25,
+      "subject": "Other",
+      "updated": ""
+    }
+  ],
+  "top_assets": [],
+  "category_views": [
+    {
+      "category": "Other",
+      "views": 5311
+    },
+    {
+      "category": "Public Services",
+      "views": 3906
+    },
+    {
+      "category": "General Research",
+      "views": 692
+    },
+    {
+      "category": "FCIL",
+      "views": 92
+    },
+    {
+      "category": "Public Law",
+      "views": 49
+    }
+  ],
+  "weekly_trend": [
+    {
+      "label": "Week 1",
+      "range": "",
+      "views": 2259,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 2",
+      "range": "",
+      "views": 1080,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 3",
+      "range": "",
+      "views": 641,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 4",
+      "range": "",
+      "views": 523,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 5",
+      "range": "",
+      "views": 478,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 6",
+      "range": "",
+      "views": 442,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 7",
+      "range": "",
+      "views": 296,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 8",
+      "range": "",
+      "views": 244,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 9",
+      "range": "",
+      "views": 223,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 10",
+      "range": "",
+      "views": 208,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 11",
+      "range": "",
+      "views": 192,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 12",
+      "range": "",
+      "views": 170,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 13",
+      "range": "",
+      "views": 168,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 14",
+      "range": "",
+      "views": 140,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 15",
+      "range": "",
+      "views": 134,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 16",
+      "range": "",
+      "views": 134,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 17",
+      "range": "",
+      "views": 123,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 18",
+      "range": "",
+      "views": 116,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 19",
+      "range": "",
+      "views": 104,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 20",
+      "range": "",
+      "views": 100,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 21",
+      "range": "",
+      "views": 98,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 22",
+      "range": "",
+      "views": 96,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 23",
+      "range": "",
+      "views": 94,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 24",
+      "range": "",
+      "views": 87,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 25",
+      "range": "",
+      "views": 82,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 26",
+      "range": "",
+      "views": 81,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 27",
+      "range": "",
+      "views": 74,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 28",
+      "range": "",
+      "views": 72,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 29",
+      "range": "",
+      "views": 71,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 30",
+      "range": "",
+      "views": 70,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 31",
+      "range": "",
+      "views": 70,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 32",
+      "range": "",
+      "views": 60,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 33",
+      "range": "",
+      "views": 56,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 34",
+      "range": "",
+      "views": 52,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 35",
+      "range": "",
+      "views": 50,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 36",
+      "range": "",
+      "views": 50,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 37",
+      "range": "",
+      "views": 49,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 38",
+      "range": "",
+      "views": 48,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 39",
+      "range": "",
+      "views": 48,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 40",
+      "range": "",
+      "views": 45,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 41",
+      "range": "",
+      "views": 44,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 42",
+      "range": "",
+      "views": 44,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 43",
+      "range": "",
+      "views": 44,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 44",
+      "range": "",
+      "views": 41,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 45",
+      "range": "",
+      "views": 40,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 46",
+      "range": "",
+      "views": 38,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 47",
+      "range": "",
+      "views": 38,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 48",
+      "range": "",
+      "views": 25,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 49",
+      "range": "",
+      "views": 25,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 50",
+      "range": "",
+      "views": 24,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 51",
+      "range": "",
+      "views": 20,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 52",
+      "range": "",
+      "views": 19,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 53",
+      "range": "",
+      "views": 19,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 54",
+      "range": "",
+      "views": 19,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 55",
+      "range": "",
+      "views": 19,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 56",
+      "range": "",
+      "views": 18,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 57",
+      "range": "",
+      "views": 17,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 58",
+      "range": "",
+      "views": 14,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 59",
+      "range": "",
+      "views": 14,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 60",
+      "range": "",
+      "views": 14,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 61",
+      "range": "",
+      "views": 14,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 62",
+      "range": "",
+      "views": 11,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 63",
+      "range": "",
+      "views": 11,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 64",
+      "range": "",
+      "views": 10,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 65",
+      "range": "",
+      "views": 10,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 66",
+      "range": "",
+      "views": 10,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 67",
+      "range": "",
+      "views": 10,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 68",
+      "range": "",
+      "views": 10,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 69",
+      "range": "",
+      "views": 10,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 70",
+      "range": "",
+      "views": 10,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 71",
+      "range": "",
+      "views": 10,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 72",
+      "range": "",
+      "views": 10,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 73",
+      "range": "",
+      "views": 10,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 74",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 75",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 76",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 77",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 78",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 79",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 80",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 81",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 82",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 83",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 84",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 85",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 86",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 87",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 88",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 89",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 90",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 91",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 92",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 93",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 94",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 95",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 96",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 97",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 98",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 99",
+      "range": "",
+      "views": 9,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 100",
+      "range": "",
+      "views": 8,
+      "previous_views": 0
+    },
+    {
+      "label": "Week 101",
+      "range": "",
+      "views": 8,
+      "previous_views": 0
+    }
+  ],
+  "updates": [],
+  "methodology": "Guide views are counted when a guide page is loaded. Asset clicks are counted when users follow links to reusable LibGuides assets or external resources.",
+  "privacy": "This dashboard reports aggregate, de-identified usage data only. No personal identifiers are collected or displayed.",
+  "hunters_query": {
+    "top_articles": [
+      {
+        "rank": 1,
+        "title": "Changes To Bluebook In The New 22nd Edition",
+        "path": "/changes-to-bluebook-in-the-new-22nd-edition/",
+        "views": 66,
+        "users": 57
+      },
+      {
+        "rank": 2,
+        "title": "Understanding How Congressional Bills Are Numbered",
+        "path": "/understanding-how-congressional-bills-are-numbered/",
+        "views": 56,
+        "users": 52
+      },
+      {
+        "rank": 3,
+        "title": "How To Use Ssrn A Source For The Hottest New Legal Scholarship",
+        "path": "/how-to-use-ssrn-a-source-for-the-hottest-new-legal-scholarship/",
+        "views": 38,
+        "users": 32
+      },
+      {
+        "rank": 4,
+        "title": "Researching Historical Utah Statutes And Code",
+        "path": "/researching-historical-utah-statutes-and-code/",
+        "views": 33,
+        "users": 29
+      },
+      {
+        "rank": 5,
+        "title": "Byu Law Alum To Clerk For Scotus",
+        "path": "/byu-law-alum-to-clerk-for-scotus/",
+        "views": 29,
+        "users": 28
+      },
+      {
+        "rank": 6,
+        "title": "Beginners Bluebook Guide",
+        "path": "/beginners-bluebook-guide/",
+        "views": 22,
+        "users": 17
+      },
+      {
+        "rank": 7,
+        "title": "Federal Administrative Law What Is The Ecfr And The List Of Statutes Affected",
+        "path": "/federal-administrative-law-what-is-the-ecfr-and-the-list-of-statutes-affected/",
+        "views": 21,
+        "users": 21
+      },
+      {
+        "rank": 8,
+        "title": "Apply To Be An Innovation Fellow",
+        "path": "/apply-to-be-an-innovation-fellow/",
+        "views": 17,
+        "users": 16
+      },
+      {
+        "rank": 9,
+        "title": "Become An Innovation Fellow",
+        "path": "/become-an-innovation-fellow/",
+        "views": 17,
+        "users": 16
+      },
+      {
+        "rank": 10,
+        "title": "Casetext With Cara Ai Keyword Free Legal Research",
+        "path": "/casetext-with-cara-ai-keyword-free-legal-research/",
+        "views": 16,
+        "users": 11
+      },
+      {
+        "rank": 11,
+        "title": "Construction Update Accessing Materials In The Reserve Room",
+        "path": "/construction-update-accessing-materials-in-the-reserve-room/",
+        "views": 16,
+        "users": 15
+      },
+      {
+        "rank": 12,
+        "title": "New Faculty Scholarship Display The Fsd",
+        "path": "/new-faculty-scholarship-display-the-fsd/",
+        "views": 16,
+        "users": 15
+      },
+      {
+        "rank": 13,
+        "title": "New U S Civil Rights Database",
+        "path": "/new-u-s-civil-rights-database/",
+        "views": 16,
+        "users": 15
+      },
+      {
+        "rank": 14,
+        "title": "Traveling Abroad For The Summer Take Pics",
+        "path": "/traveling-abroad-for-the-summer-take-pics/",
+        "views": 15,
+        "users": 14
+      },
+      {
+        "rank": 15,
+        "title": "Adobe",
+        "path": "/adobe/",
+        "views": 14,
+        "users": 13
+      }
+    ]
+  },
+  "digital_commons": {
+    "top_items": [
+      {
+        "rank": 1,
+        "title": "\"Why the National Popular Vote Compact is Unconstitutional\" by Norman R. Williams",
+        "path": "/lawreview/vol2012/iss5/3/",
+        "section": "lawreview",
+        "views": 623,
+        "users": 508
+      },
+      {
+        "rank": 2,
+        "title": "Law Review Symposium",
+        "path": "/lawreview/lawreviewsymposium.html",
+        "section": "lawreview",
+        "views": 156,
+        "users": 103
+      },
+      {
+        "rank": 3,
+        "title": "Faculty Scholarship",
+        "path": "/faculty_scholarship/",
+        "section": "faculty_scholarship",
+        "views": 80,
+        "users": 25
+      },
+      {
+        "rank": 4,
+        "title": "\"Rethinking Copyright Harmonization\" by Clark D. Asay",
+        "path": "/faculty_scholarship/375/",
+        "section": "faculty_scholarship",
+        "views": 79,
+        "users": 11
+      },
+      {
+        "rank": 5,
+        "title": "\"Constitutional Law-Procedural Due Process-Student Has Right to Have At\"",
+        "path": "/lawreview/vol1978/iss3/8/",
+        "section": "lawreview",
+        "views": 70,
+        "users": 2
+      },
+      {
+        "rank": 6,
+        "title": "\"Taxing Data\" by Omri Marian",
+        "path": "/lawreview/vol47/iss2/7/",
+        "section": "lawreview",
+        "views": 65,
+        "users": 41
+      },
+      {
+        "rank": 7,
+        "title": "\"Freedom of Religion in India: Current Issues and Supreme Court Acting \" by Faizan Mustafa and Jagteshwar Singh Sohi",
+        "path": "/lawreview/vol2017/iss4/9/",
+        "section": "lawreview",
+        "views": 56,
+        "users": 39
+      },
+      {
+        "rank": 8,
+        "title": "\"Did Anderson v. TikTok Get It Right? Holding Social Media Providers Ac\" by Allison Mitton",
+        "path": "/lawreview/vol51/iss1/7/",
+        "section": "lawreview",
+        "views": 56,
+        "users": 43
+      },
+      {
+        "rank": 9,
+        "title": "BYU Law Review: All Issues",
+        "path": "/lawreview/all_issues.html",
+        "section": "lawreview",
+        "views": 51,
+        "users": 30
+      },
+      {
+        "rank": 10,
+        "title": "\"Misaligned Interests in Private Equity\" by Jarrod Shobe",
+        "path": "/lawreview/vol2016/iss5/6/",
+        "section": "lawreview",
+        "views": 50,
+        "users": 37
+      },
+      {
+        "rank": 11,
+        "title": "The Clark Memorandum | Law School Archives",
+        "path": "/clarkmemorandum/index.2.html",
+        "section": "clarkmemorandum",
+        "views": 47,
+        "users": 40
+      },
+      {
+        "rank": 12,
+        "title": "\"The Impact of Religion and Religious Organizations\" by Elizabeth A. Clark",
+        "path": "/lawreview/vol49/iss1/6/",
+        "section": "lawreview",
+        "views": 47,
+        "users": 34
+      },
+      {
+        "rank": 13,
+        "title": "\"Corruption in University Admissions and the Administrative Allocation \" by L. Burke Files, Roger E. Meiners et al.",
+        "path": "/lawreview/vol47/iss1/6/",
+        "section": "lawreview",
+        "views": 45,
+        "users": 42
+      },
+      {
+        "rank": 14,
+        "title": "\"Not Her Fault: AI Deepfakes, Nonconsensual Pornography, and Federal La\" by Taylor Percival James",
+        "path": "/lawreview/vol50/iss4/10/",
+        "section": "lawreview",
+        "views": 45,
+        "users": 30
+      },
+      {
+        "rank": 15,
+        "title": "Editorial Board",
+        "path": "/lawreview/editorialboard.html",
+        "section": "lawreview",
+        "views": 41,
+        "users": 32
+      },
+      {
+        "rank": 16,
+        "title": "\"An Empirical Study of Copyright's Substantial Similarity Test\" by Clark D. Asay",
+        "path": "/faculty_scholarship/370/",
+        "section": "faculty_scholarship",
+        "views": 40,
+        "users": 29
+      },
+      {
+        "rank": 17,
+        "title": "\"Cyber Sovereignty: The Way Ahead\" by Eric Talbot Jensen",
+        "path": "/faculty_scholarship/239/",
+        "section": "faculty_scholarship",
+        "views": 39,
+        "users": 36
+      },
+      {
+        "rank": 18,
+        "title": "BYU Law Review: Most Popular Papers",
+        "path": "/lawreview/topdownloads.html",
+        "section": "lawreview",
+        "views": 39,
+        "users": 24
+      },
+      {
+        "rank": 19,
+        "title": "\"NIL Tampering\" by Josh Lens",
+        "path": "/lawreview/vol49/iss6/6/",
+        "section": "lawreview",
+        "views": 39,
+        "users": 29
+      },
+      {
+        "rank": 20,
+        "title": "\"Creating Crimmigration\" by César Cuahtémoc García Hernández",
+        "path": "/lawreview/vol2013/iss6/4/",
+        "section": "lawreview",
+        "views": 37,
+        "users": 25
+      }
+    ]
+  }
+}

@@ -52,6 +52,8 @@ jobs:
           GA4_PROPERTY_RESEARCH_GUIDES: ${{ secrets.GA4_PROPERTY_RESEARCH_GUIDES }}
           GA4_PROPERTY_LIBGUIDES: ${{ secrets.GA4_PROPERTY_LIBGUIDES }}
           GA4_PROPERTY_FCIL: ${{ secrets.GA4_PROPERTY_FCIL }}
+          GA4_PROPERTY_HUNTERS_QUERY: ${{ secrets.GA4_PROPERTY_HUNTERS_QUERY }}
+          GA4_PROPERTY_DIGITAL_COMMONS: ${{ secrets.GA4_PROPERTY_DIGITAL_COMMONS }}
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

@@ -31,9 +31,8 @@ function buildKpiPanel(data) {
   const prev = data.reporting_month?.previous_label || 'prior month';
 
   const cards = [
-    { label: 'Guide Views',     value: fmtN(s.guide_views),    pct: s.guide_views_change_percent },
-    { label: 'Unique Users',    value: fmtN(s.unique_users),   pct: s.unique_users_change_percent },
-    { label: 'Asset Clicks',    value: fmtN(s.asset_clicks),   pct: s.asset_clicks_change_percent },
+    { label: 'Guide Views',  value: fmtN(s.guide_views),  pct: s.guide_views_change_percent },
+    { label: 'Unique Users', value: fmtN(s.unique_users), pct: s.unique_users_change_percent },
   ].map(c => `
     <div class="kpi-card">
       <span class="kpi-label">${c.label}</span>
@@ -224,6 +223,26 @@ async function boot() {
   const month = data.reporting_month?.label || 'Current Report';
   const hdrMonth = document.getElementById('hdr-month');
   if (hdrMonth) hdrMonth.textContent = month;
+
+  // Apply hidden-path filter to data
+  const hiddenLibguides = new Set((data.hidden_paths?.libguides || []));
+  const hiddenHQ = new Set((data.hidden_paths?.hunters_query || []));
+  const hiddenDC = new Set((data.hidden_paths?.digital_commons || []));
+  if (hiddenLibguides.size) {
+    data.top_guides = (data.top_guides || []).filter(g => !hiddenLibguides.has(g.url || g.title || ''));
+    // re-rank
+    data.top_guides.forEach((g, i) => { g.rank = i + 1; });
+  }
+  if (hiddenHQ.size && data.hunters_query) {
+    data.hunters_query.top_articles = (data.hunters_query.top_articles || [])
+      .filter(a => !hiddenHQ.has(a.path || ''));
+    data.hunters_query.top_articles.forEach((a, i) => { a.rank = i + 1; });
+  }
+  if (hiddenDC.size && data.digital_commons) {
+    data.digital_commons.top_items = (data.digital_commons.top_items || [])
+      .filter(it => !hiddenDC.has(it.path || ''));
+    data.digital_commons.top_items.forEach((it, i) => { it.rank = i + 1; });
+  }
 
   // Build panel list (skip null builders)
   const builders = [
