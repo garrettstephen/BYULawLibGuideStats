@@ -121,10 +121,10 @@ html, body {
 
 .item-row {
   display: grid;
-  grid-template-columns: 36px 1fr;
+  grid-template-columns: 48px 1fr;
   align-items: center;
-  gap: 14px;
-  padding: 9px 16px;
+  gap: 16px;
+  padding: 11px 18px;
   background: var(--navy-card);
   border: 1px solid rgba(197, 183, 131, 0.12);
   border-radius: 8px;
@@ -132,7 +132,7 @@ html, body {
 }
 
 .item-rank {
-  font-size: 1.2rem;
+  font-size: 1.9rem;
   font-weight: 800;
   color: var(--gold-dim);
   text-align: center;
@@ -143,7 +143,7 @@ html, body {
 .item-info { min-width: 0; }
 
 .item-title {
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--white);
   overflow: hidden;
@@ -153,7 +153,7 @@ html, body {
 }
 
 .item-sub {
-  font-size: 0.73rem;
+  font-size: 0.78rem;
   color: var(--muted);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -169,7 +169,7 @@ html, body {
   flex-shrink: 0;
   display: flex;
   justify-content: center;
-  padding-top: 12px;
+  padding-top: 14px;
   margin-top: 10px;
   border-top: 1px solid rgba(197, 183, 131, 0.20);
 }
@@ -177,23 +177,23 @@ html, body {
 .col-qr {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 18px;
 }
 
 .qr-img {
   display: block;
-  border-radius: 6px;
-  border: 2px solid rgba(197, 183, 131, 0.30);
+  border-radius: 8px;
+  border: 2px solid rgba(197, 183, 131, 0.35);
 }
 
 .qr-text {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 5px;
 }
 
 .qr-label {
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   color: var(--muted);
   font-weight: 700;
   text-transform: uppercase;
@@ -201,13 +201,13 @@ html, body {
 }
 
 .qr-url {
-  font-size: 0.70rem;
+  font-size: 0.80rem;
   color: var(--gold-dim);
   font-weight: 600;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 200px;
+  max-width: 220px;
 }
 
 /* ── States ── */
