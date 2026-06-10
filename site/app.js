@@ -1,25 +1,27 @@
 /* BYU Law Library Resource Stats — Digital Kiosk
    Single-page 3-column display
-   Data: ./data/monthly-stats.json + ./data/kiosk-config.json */
+   Data: ./data/monthly-stats.json + ./data/hidden-paths.json + ./data/kiosk-config.json */
 
 const DATA_URL   = './data/monthly-stats.json';
+const HIDDEN_URL = './data/hidden-paths.json';
 const CONFIG_URL = './data/kiosk-config.json';
-
-const numFmt = new Intl.NumberFormat('en-US');
-function fmtN(v) { const n = Number(v); return numFmt.format(isFinite(n) ? n : 0); }
 
 function qrSrc(url) {
   return 'https://api.qrserver.com/v1/create-qr-code/'
-    + '?size=88x88&color=ffffff&bgcolor=001428'
+    + '?size=80x80&color=ffffff&bgcolor=001428'
     + '&data=' + encodeURIComponent(url);
 }
 
 function renderQr(containerId, url) {
   const el = document.getElementById(containerId);
   if (!el || !url) return;
+  const display = url.replace(/^https?:\/\//, '').replace(/\/$/, '');
   el.innerHTML = `
-    <img src="${qrSrc(url)}" alt="Scan to visit" class="qr-img" width="88" height="88" loading="lazy">
-    <span class="qr-label">Scan to visit</span>`;
+    <img src="${qrSrc(url)}" alt="Scan to visit" class="qr-img" width="80" height="80" loading="lazy">
+    <div class="qr-text">
+      <span class="qr-label">Scan to visit</span>
+      <span class="qr-url">${display}</span>
+    </div>`;
 }
 
 function renderList(containerId, items) {
@@ -33,7 +35,6 @@ function renderList(containerId, items) {
     const rank  = item.rank || i + 1;
     const title = item.title || 'Untitled';
     const sub   = item.subject || item.section || '';
-    const views = item.views || 0;
     return `
       <div class="item-row">
         <span class="item-rank">${rank}</span>
@@ -41,33 +42,30 @@ function renderList(containerId, items) {
           <div class="item-title">${title}</div>
           ${sub ? `<div class="item-sub">${sub}</div>` : ''}
         </div>
-        <div class="item-views">
-          <span class="item-views-num">${fmtN(views)}</span>
-          <span class="item-views-label">views</span>
-        </div>
       </div>`;
   }).join('');
 }
 
 async function boot() {
-  let data, config;
+  // Fetch all three data sources in parallel
+  const [dataRes, hiddenRes, configRes] = await Promise.allSettled([
+    fetch(DATA_URL,   { cache: 'no-store' }),
+    fetch(HIDDEN_URL, { cache: 'no-store' }),
+    fetch(CONFIG_URL, { cache: 'no-store' }),
+  ]);
 
-  try {
-    const res = await fetch(DATA_URL, { cache: 'no-store' });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    data = await res.json();
-  } catch (err) {
+  // Stats data is required
+  if (dataRes.status === 'rejected' || !dataRes.value.ok) {
+    const msg = dataRes.reason?.message || `HTTP ${dataRes.value?.status}`;
     document.getElementById('grid').innerHTML =
-      `<div class="error-row">Could not load stats: ${err.message}</div>`;
+      `<div class="error-row">Could not load stats: ${msg}</div>`;
     return;
   }
-
-  try {
-    const res = await fetch(CONFIG_URL, { cache: 'no-store' });
-    config = res.ok ? await res.json() : {};
-  } catch (_) {
-    config = {};
-  }
+  const data   = await dataRes.value.json();
+  const hidden = (hiddenRes.status === 'fulfilled' && hiddenRes.value.ok)
+    ? await hiddenRes.value.json() : {};
+  const config = (configRes.status === 'fulfilled' && configRes.value.ok)
+    ? await configRes.value.json() : {};
 
   // Header month
   const hdrMonth = document.getElementById('hdr-month');
@@ -84,10 +82,10 @@ async function boot() {
     }
   }
 
-  // Apply hidden-paths filter
-  const hiddenLibguides = new Set(data.hidden_paths?.libguides || []);
-  const hiddenHQ        = new Set(data.hidden_paths?.hunters_query || []);
-  const hiddenDC        = new Set(data.hidden_paths?.digital_commons || []);
+  // Hidden-paths filter — reads from hidden-paths.json directly (always current)
+  const hiddenLibguides = new Set(hidden.libguides || []);
+  const hiddenHQ        = new Set(hidden.hunters_query || []);
+  const hiddenDC        = new Set(hidden.digital_commons || []);
 
   let guides = (data.top_guides || []).filter(g => !hiddenLibguides.has(g.url || ''));
   guides.forEach((g, i) => { g.rank = i + 1; });

@@ -1,6 +1,9 @@
 import os
 import json
 import re
+import base64
+import urllib.request
+import urllib.error
 from flask import render_template, jsonify, request
 
 
@@ -8,6 +11,9 @@ def register_lib_guide_stats_routes(app, deps):
     require_auth = deps['require_auth']
     data_file = deps['LIB_GUIDE_STATS_DATA_FILE']
     data_dir = os.path.dirname(data_file)
+    github_pat   = deps.get('GITHUB_PAT', '')
+    github_owner = deps.get('GITHUB_REPO_OWNER', '')
+    github_repo  = deps.get('GITHUB_REPO_NAME', '')
 
     def _available_months():
         if not os.path.isdir(data_dir):
@@ -171,3 +177,138 @@ def register_lib_guide_stats_routes(app, deps):
             'items': items,
             'hidden_paths': hp.get(hp_section, [])
         })
+
+    # ── Kiosk config ─────────────────────────────────────────────────
+
+    DEFAULT_KIOSK_CONFIG = {
+        'sections': {
+            'libguides':      {'url': 'https://guides.law.byu.edu/research'},
+            'hunters_query':  {'url': 'https://huntersquery.byu.edu/'},
+            'digital_commons':{'url': 'https://digitalcommons.law.byu.edu/'},
+        }
+    }
+
+    def _get_kiosk_config():
+        cfg_file = os.path.join(data_dir, 'kiosk-config.json')
+        if os.path.exists(cfg_file):
+            try:
+                with open(cfg_file) as f:
+                    return json.load(f)
+            except Exception:
+                pass
+        return DEFAULT_KIOSK_CONFIG
+
+    def _save_kiosk_config(cfg):
+        cfg_file = os.path.join(data_dir, 'kiosk-config.json')
+        with open(cfg_file, 'w') as f:
+            json.dump(cfg, f, indent=2)
+            f.write('\n')
+
+    @app.route('/api/lib-guide-stats/kiosk-config', methods=['GET'])
+    @require_auth
+    def lib_guide_stats_get_kiosk_config():
+        return jsonify(_get_kiosk_config())
+
+    @app.route('/api/lib-guide-stats/kiosk-config', methods=['POST'])
+    @require_auth
+    def lib_guide_stats_save_kiosk_config():
+        body = request.get_json(force=True, silent=True) or {}
+        sections = body.get('sections')
+        if not sections or not isinstance(sections, dict):
+            return jsonify({'error': 'sections dict required'}), 400
+        cfg = {'sections': sections}
+        _save_kiosk_config(cfg)
+        return jsonify({'ok': True})
+
+    # ── Push to public kiosk ─────────────────────────────────────────
+
+    @app.route('/api/lib-guide-stats/push-to-kiosk', methods=['POST'])
+    @require_auth
+    def lib_guide_stats_push_to_kiosk():
+        if not github_pat or not github_owner or not github_repo:
+            return jsonify({
+                'error': 'GitHub not configured. Add GITHUB_PAT, GITHUB_REPO_OWNER, '
+                         'and GITHUB_REPO_NAME to your .env file.'
+            }), 503
+
+        api_base = f'https://api.github.com/repos/{github_owner}/{github_repo}'
+        gh_headers = {
+            'Authorization': f'Bearer {github_pat}',
+            'Accept': 'application/vnd.github+json',
+            'X-GitHub-Api-Version': '2022-11-28',
+            'Content-Type': 'application/json',
+            'User-Agent': 'BYULawLibrary-Admin',
+        }
+
+        def _push_file(repo_path, local_path, commit_message):
+            """Commit a single local file to GitHub. Returns error string or None."""
+            try:
+                with open(local_path) as f:
+                    content = f.read()
+            except FileNotFoundError:
+                return f'{os.path.basename(local_path)} not found locally.'
+
+            # Get current SHA if file exists
+            sha = ''
+            try:
+                req = urllib.request.Request(
+                    f'{api_base}/contents/{repo_path}', headers=gh_headers)
+                with urllib.request.urlopen(req) as resp:
+                    sha = json.loads(resp.read()).get('sha', '')
+            except urllib.error.HTTPError as e:
+                if e.code != 404:
+                    return f'GitHub API error (get {repo_path}): {e.code}'
+
+            put_body = {
+                'message': commit_message,
+                'content': base64.b64encode(content.encode()).decode(),
+                'branch': 'main',
+            }
+            if sha:
+                put_body['sha'] = sha
+            try:
+                req = urllib.request.Request(
+                    f'{api_base}/contents/{repo_path}',
+                    data=json.dumps(put_body).encode(),
+                    headers=gh_headers,
+                    method='PUT',
+                )
+                with urllib.request.urlopen(req):
+                    pass
+            except urllib.error.HTTPError as e:
+                body_txt = e.read().decode('utf-8', errors='replace')
+                return f'GitHub API error (put {repo_path}): {e.code} — {body_txt[:200]}'
+            return None
+
+        # Push kiosk-config.json
+        err = _push_file(
+            'site/data/kiosk-config.json',
+            os.path.join(data_dir, 'kiosk-config.json'),
+            'Update kiosk config [auto]',
+        )
+        if err:
+            return jsonify({'error': err}), 502
+
+        # Push hidden-paths.json so visibility changes take effect on kiosk
+        err = _push_file(
+            'site/data/hidden-paths.json',
+            os.path.join(data_dir, 'hidden-paths.json'),
+            'Update hidden paths [auto]',
+        )
+        if err:
+            return jsonify({'error': err}), 502
+
+        # Trigger workflow_dispatch
+        try:
+            req = urllib.request.Request(
+                f'{api_base}/actions/workflows/publish.yml/dispatches',
+                data=json.dumps({'ref': 'main'}).encode(),
+                headers=gh_headers,
+                method='POST',
+            )
+            with urllib.request.urlopen(req):
+                pass
+        except urllib.error.HTTPError as e:
+            return jsonify({'error': f'GitHub API error (dispatch): {e.code}'}), 502
+
+        return jsonify({'ok': True, 'message': 'Config and visibility pushed, workflow triggered.'})
