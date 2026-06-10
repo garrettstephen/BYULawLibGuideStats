@@ -1,5 +1,9 @@
 {
-  "libguides": [],
+  "libguides": [
+    "/srch.php",
+    "/research",
+    "/az.php"
+  ],
   "hunters_query": [],
   "digital_commons": []
 }
