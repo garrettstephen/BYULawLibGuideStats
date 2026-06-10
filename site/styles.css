@@ -13,8 +13,7 @@
   --white:     #ffffff;
   --off-white: #e8edf5;
   --muted:     rgba(232, 237, 245, 0.48);
-  --hdr-h:     72px;
-  --ftr-h:     36px;
+  --ftr-h:     42px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -32,34 +31,10 @@ html, body {
 /* ── Shell ── */
 #shell {
   display: grid;
-  grid-template-rows: var(--hdr-h) 1fr var(--ftr-h);
+  grid-template-rows: 1fr var(--ftr-h);
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-}
-
-/* ── Header ── */
-#hdr {
-  background: var(--navy-deep);
-  border-bottom: 2px solid rgba(197, 183, 131, 0.35);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 44px;
-  flex-shrink: 0;
-}
-
-.hdr-logo {
-  height: 42px;
-  display: block;
-}
-
-.hdr-month {
-  font-size: 1.35rem;
-  font-weight: 800;
-  color: var(--gold);
-  letter-spacing: 0.04em;
-  white-space: nowrap;
 }
 
 /* ── 3-column grid ── */
@@ -227,7 +202,7 @@ html, body {
 /* ── Footer ── */
 #ftr {
   background: var(--navy-deep);
-  border-top: 1px solid rgba(197, 183, 131, 0.16);
+  border-top: 1px solid rgba(197, 183, 131, 0.20);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -236,21 +211,38 @@ html, body {
 }
 
 #ftr-label {
-  font-size: 0.73rem;
+  font-size: 0.74rem;
   font-weight: 700;
   color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 
+#ftr-right {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  font-size: 0.80rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+#ftr-right #hdr-month {
+  color: var(--gold);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.ftr-sep { color: var(--gold-dim); margin: 0 6px; }
+
 #ftr-updated {
-  font-size: 0.71rem;
+  font-size: 0.74rem;
   color: var(--muted);
 }
 
 /* ── Responsive ── */
 @media (max-width: 960px) {
-  :root { --hdr-h: 58px; }
   #grid { grid-template-columns: 1fr; grid-template-rows: 1fr 2px 1fr 2px 1fr; overflow-y: auto; }
   .col-divider { align-self: unset; height: 2px; }
   .col { padding: 14px 18px; }
