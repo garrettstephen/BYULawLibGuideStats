@@ -1,0 +1,46 @@
+{
+  "datasets": [
+    {
+      "id": "overall",
+      "label": "Digital Commons — All Content",
+      "years": [
+        {"year": 2013, "posted_works": 2770, "downloads": 15194},
+        {"year": 2014, "posted_works": 608, "downloads": 160603},
+        {"year": 2015, "posted_works": 68, "downloads": 146661},
+        {"year": 2016, "posted_works": 393, "downloads": 183395},
+        {"year": 2017, "posted_works": 7475, "downloads": 212763},
+        {"year": 2018, "posted_works": 25983, "downloads": 260503},
+        {"year": 2019, "posted_works": 1693, "downloads": 255584},
+        {"year": 2020, "posted_works": 91, "downloads": 383503},
+        {"year": 2021, "posted_works": 471, "downloads": 463158},
+        {"year": 2022, "posted_works": 1604, "downloads": 363714},
+        {"year": 2023, "posted_works": 1978, "downloads": 702919},
+        {"year": 2024, "posted_works": 491, "downloads": 452572},
+        {"year": 2025, "posted_works": 364, "downloads": 1096533}
+      ],
+      "cumulative_items": 44865,
+      "cumulative_downloads": 5312763
+    },
+    {
+      "id": "law_review",
+      "label": "BYU Law Review",
+      "years": [
+        {"year": 2013, "posted_works": 1863, "downloads": 13617},
+        {"year": 2014, "posted_works": 53, "downloads": 78062},
+        {"year": 2015, "posted_works": 37, "downloads": 68890},
+        {"year": 2016, "posted_works": 91, "downloads": 93118},
+        {"year": 2017, "posted_works": 43, "downloads": 104872},
+        {"year": 2018, "posted_works": 66, "downloads": 108693},
+        {"year": 2019, "posted_works": 42, "downloads": 109335},
+        {"year": 2020, "posted_works": 64, "downloads": 111282},
+        {"year": 2021, "posted_works": 62, "downloads": 113573},
+        {"year": 2022, "posted_works": 70, "downloads": 108215},
+        {"year": 2023, "posted_works": 79, "downloads": 137814},
+        {"year": 2024, "posted_works": 43, "downloads": 126887},
+        {"year": 2025, "posted_works": 83, "downloads": 303310}
+      ],
+      "cumulative_items": 2627,
+      "cumulative_downloads": 1653530
+    }
+  ]
+}

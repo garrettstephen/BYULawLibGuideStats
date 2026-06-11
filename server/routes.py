@@ -137,7 +137,15 @@ def register_lib_guide_stats_routes(app, deps):
             if err or not data:
                 continue
 
-            if section == 'hunters_query':
+            if section == 'libguides':
+                for g in data.get('top_guides', []):
+                    key = g.get('url') or g.get('title', '')
+                    if key not in agg:
+                        agg[key] = {'title': g['title'], 'path': key,
+                                    'subject': g.get('subject', ''), 'views': 0}
+                    agg[key]['views'] += g.get('views', 0)
+
+            elif section == 'hunters_query':
                 for item in data.get('hunters_query', {}).get('top_articles', []):
                     key = item['path']
                     if key not in agg:
@@ -168,7 +176,7 @@ def register_lib_guide_stats_routes(app, deps):
             it['rank'] = i + 1
 
         hp = _get_hidden()
-        hp_section = 'libguides' if section == 'fcil' else section
+        hp_section = 'libguides' if section in ('fcil', 'libguides') else section
 
         return jsonify({
             'section': section,
@@ -218,6 +226,87 @@ def register_lib_guide_stats_routes(app, deps):
             return jsonify({'error': 'sections dict required'}), 400
         cfg = {'sections': sections}
         _save_kiosk_config(cfg)
+        return jsonify({'ok': True})
+
+    # ── Item display overrides ───────────────────────────────────────────
+
+    def _item_overrides_path():
+        return os.path.join(data_dir, 'item-overrides.json')
+
+    def _get_item_overrides():
+        f = _item_overrides_path()
+        if os.path.exists(f):
+            try:
+                with open(f) as fp:
+                    return json.load(fp)
+            except Exception:
+                pass
+        return {'digital_commons': {}, 'hunters_query': {}, 'libguides': {}}
+
+    def _save_item_overrides(d):
+        with open(_item_overrides_path(), 'w') as fp:
+            json.dump(d, fp, indent=2)
+            fp.write('\n')
+
+    @app.route('/api/lib-guide-stats/item-overrides', methods=['GET'])
+    @require_auth
+    def lib_guide_stats_get_item_overrides():
+        return jsonify(_get_item_overrides())
+
+    @app.route('/api/lib-guide-stats/item-overrides/item', methods=['POST'])
+    @require_auth
+    def lib_guide_stats_save_item_override():
+        body = request.get_json(force=True, silent=True) or {}
+        section = body.get('section')
+        key = body.get('key')
+        if not section or not key:
+            return jsonify({'error': 'section and key required'}), 400
+        ov = _get_item_overrides()
+        if section not in ov:
+            ov[section] = {}
+        title = (body.get('title') or '').strip()
+        author = (body.get('author') or '').strip()
+        if title or author:
+            ov[section][key] = {}
+            if title:  ov[section][key]['title'] = title
+            if author: ov[section][key]['author'] = author
+        else:
+            ov[section].pop(key, None)
+        _save_item_overrides(ov)
+        return jsonify({'ok': True, 'override': ov[section].get(key, {})})
+
+    # ── DC annual statistics ─────────────────────────────────────────────
+
+    def _dc_annual_stats_path():
+        return os.path.join(data_dir, 'dc-annual-stats.json')
+
+    def _get_dc_annual_stats():
+        f = _dc_annual_stats_path()
+        if os.path.exists(f):
+            try:
+                with open(f) as fp:
+                    return json.load(fp)
+            except Exception:
+                pass
+        return {'datasets': []}
+
+    def _save_dc_annual_stats(d):
+        with open(_dc_annual_stats_path(), 'w') as fp:
+            json.dump(d, fp, indent=2)
+            fp.write('\n')
+
+    @app.route('/api/lib-guide-stats/dc-annual-stats', methods=['GET'])
+    @require_auth
+    def lib_guide_stats_get_dc_annual():
+        return jsonify(_get_dc_annual_stats())
+
+    @app.route('/api/lib-guide-stats/dc-annual-stats', methods=['POST'])
+    @require_auth
+    def lib_guide_stats_save_dc_annual():
+        body = request.get_json(force=True, silent=True) or {}
+        if 'datasets' not in body or not isinstance(body['datasets'], list):
+            return jsonify({'error': 'datasets array required'}), 400
+        _save_dc_annual_stats(body)
         return jsonify({'ok': True})
 
     # ── Push to public kiosk ─────────────────────────────────────────
@@ -294,6 +383,18 @@ def register_lib_guide_stats_routes(app, deps):
             'site/data/hidden-paths.json',
             os.path.join(data_dir, 'hidden-paths.json'),
             'Update hidden paths [auto]',
+        )
+        if err:
+            return jsonify({'error': err}), 502
+
+        # Push item-overrides.json so title/author edits appear on kiosk
+        ovp = _item_overrides_path()
+        if not os.path.exists(ovp):
+            _save_item_overrides({'digital_commons': {}, 'hunters_query': {}, 'libguides': {}})
+        err = _push_file(
+            'site/data/item-overrides.json',
+            ovp,
+            'Update item overrides [auto]',
         )
         if err:
             return jsonify({'error': err}), 502

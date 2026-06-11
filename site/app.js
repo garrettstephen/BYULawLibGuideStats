@@ -1,13 +1,13 @@
 /* BYU Law Library Resource Stats — Digital Kiosk
    Single-page 3-column display
-   Data: ./data/monthly-stats.json + ./data/hidden-paths.json + ./data/kiosk-config.json */
+   Data: monthly-stats.json + hidden-paths.json + kiosk-config.json + item-overrides.json */
 
-const DATA_URL   = './data/monthly-stats.json';
-const HIDDEN_URL = './data/hidden-paths.json';
-const CONFIG_URL = './data/kiosk-config.json';
+const DATA_URL      = './data/monthly-stats.json';
+const HIDDEN_URL    = './data/hidden-paths.json';
+const CONFIG_URL    = './data/kiosk-config.json';
+const OVERRIDES_URL = './data/item-overrides.json';
 
-// Parse Digital Commons titles: "Article Title" by Author Name
-// Returns {title, author} — author is '' when not present
+// Parse Digital Commons titles: "Article Title" by Author Name → {title, author}
 function parseDcTitle(raw) {
   const m = raw.match(/^"(.+?)"\s+by\s+(.+)$/);
   if (m) return { title: m[1].trim(), author: m[2].trim() };
@@ -55,11 +55,12 @@ function renderList(containerId, items) {
 }
 
 async function boot() {
-  // Fetch all three data sources in parallel
-  const [dataRes, hiddenRes, configRes] = await Promise.allSettled([
-    fetch(DATA_URL,   { cache: 'no-store' }),
-    fetch(HIDDEN_URL, { cache: 'no-store' }),
-    fetch(CONFIG_URL, { cache: 'no-store' }),
+  // Fetch all data sources in parallel
+  const [dataRes, hiddenRes, configRes, overridesRes] = await Promise.allSettled([
+    fetch(DATA_URL,      { cache: 'no-store' }),
+    fetch(HIDDEN_URL,    { cache: 'no-store' }),
+    fetch(CONFIG_URL,    { cache: 'no-store' }),
+    fetch(OVERRIDES_URL, { cache: 'no-store' }),
   ]);
 
   // Stats data is required
@@ -69,11 +70,13 @@ async function boot() {
       `<div class="error-row">Could not load stats: ${msg}</div>`;
     return;
   }
-  const data   = await dataRes.value.json();
-  const hidden = (hiddenRes.status === 'fulfilled' && hiddenRes.value.ok)
+  const data      = await dataRes.value.json();
+  const hidden    = (hiddenRes.status === 'fulfilled' && hiddenRes.value.ok)
     ? await hiddenRes.value.json() : {};
-  const config = (configRes.status === 'fulfilled' && configRes.value.ok)
+  const config    = (configRes.status === 'fulfilled' && configRes.value.ok)
     ? await configRes.value.json() : {};
+  const overrides = (overridesRes.status === 'fulfilled' && overridesRes.value.ok)
+    ? await overridesRes.value.json() : {};
 
   // Header month
   const hdrMonth = document.getElementById('hdr-month');
@@ -90,22 +93,52 @@ async function boot() {
     }
   }
 
-  // Hidden-paths filter — reads from hidden-paths.json directly (always current)
+  // Build per-section override maps
+  const lgOv = overrides.libguides      || {};
+  const hqOv = overrides.hunters_query  || {};
+  const dcOv = overrides.digital_commons || {};
+
+  // Hidden-paths filter
   const hiddenLibguides = new Set(hidden.libguides || []);
   const hiddenHQ        = new Set(hidden.hunters_query || []);
   const hiddenDC        = new Set(hidden.digital_commons || []);
 
-  let guides = (data.top_guides || []).filter(g => !hiddenLibguides.has(g.url || ''));
+  // LibGuides — apply overrides
+  let guides = (data.top_guides || [])
+    .filter(g => !hiddenLibguides.has(g.url || ''))
+    .map(g => {
+      const key = g.url || g.title || '';
+      const ov = lgOv[key] || {};
+      return { ...g, title: ov.title || g.title, author: ov.author || '' };
+    });
   guides.forEach((g, i) => { g.rank = i + 1; });
 
-  let hqArticles = (data.hunters_query?.top_articles || []).filter(a => !hiddenHQ.has(a.path || ''));
+  // Hunter's Query — apply overrides
+  let hqArticles = (data.hunters_query?.top_articles || [])
+    .filter(a => !hiddenHQ.has(a.path || ''))
+    .map(a => {
+      const key = a.path || '';
+      const ov = hqOv[key] || {};
+      return {
+        ...a,
+        title: ov.title || a.title,
+        author: ov.author !== undefined ? ov.author : (a.author || ''),
+      };
+    });
   hqArticles.forEach((a, i) => { a.rank = i + 1; });
 
+  // Digital Commons — parse title/author, then apply overrides
   let dcItems = (data.digital_commons?.top_items || [])
     .filter(it => !hiddenDC.has(it.path || ''))
     .map(it => {
-      const { title, author } = parseDcTitle(it.title);
-      return { ...it, title, author };
+      const { title: parsedTitle, author: parsedAuthor } = parseDcTitle(it.title);
+      const key = it.path || '';
+      const ov = dcOv[key] || {};
+      return {
+        ...it,
+        title:  ov.title  || parsedTitle,
+        author: ov.author !== undefined ? ov.author : parsedAuthor,
+      };
     });
   dcItems.forEach((it, i) => { it.rank = i + 1; });
 
