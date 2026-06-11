@@ -97,7 +97,7 @@ html, body {
 .item-row {
   display: grid;
   grid-template-columns: 48px 1fr;
-  align-items: center;
+  align-items: start;
   gap: 16px;
   padding: 11px 18px;
   background: var(--navy-card);
@@ -113,6 +113,7 @@ html, body {
   text-align: center;
   font-variant-numeric: tabular-nums;
   line-height: 1;
+  padding-top: 3px;
 }
 
 .item-info { min-width: 0; }
@@ -121,10 +122,11 @@ html, body {
   font-size: 1.2rem;
   font-weight: 700;
   color: var(--white);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  line-height: 1.3;
+  line-height: 1.25;
 }
 
 .item-sub {

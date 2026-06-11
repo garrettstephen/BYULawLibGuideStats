@@ -6,6 +6,14 @@ const DATA_URL   = './data/monthly-stats.json';
 const HIDDEN_URL = './data/hidden-paths.json';
 const CONFIG_URL = './data/kiosk-config.json';
 
+// Parse Digital Commons titles: "Article Title" by Author Name
+// Returns {title, author} — author is '' when not present
+function parseDcTitle(raw) {
+  const m = raw.match(/^"(.+?)"\s+by\s+(.+)$/);
+  if (m) return { title: m[1].trim(), author: m[2].trim() };
+  return { title: raw, author: '' };
+}
+
 function qrSrc(url) {
   return 'https://api.qrserver.com/v1/create-qr-code/'
     + '?size=130x130&color=ffffff&bgcolor=001428'
@@ -34,7 +42,7 @@ function renderList(containerId, items) {
   el.innerHTML = items.slice(0, 10).map((item, i) => {
     const rank  = item.rank || i + 1;
     const title = item.title || 'Untitled';
-    const sub   = item.subject || item.section || '';
+    const sub   = item.subject || item.author || item.section || '';
     return `
       <div class="item-row">
         <span class="item-rank">${rank}</span>
@@ -93,7 +101,12 @@ async function boot() {
   let hqArticles = (data.hunters_query?.top_articles || []).filter(a => !hiddenHQ.has(a.path || ''));
   hqArticles.forEach((a, i) => { a.rank = i + 1; });
 
-  let dcItems = (data.digital_commons?.top_items || []).filter(it => !hiddenDC.has(it.path || ''));
+  let dcItems = (data.digital_commons?.top_items || [])
+    .filter(it => !hiddenDC.has(it.path || ''))
+    .map(it => {
+      const { title, author } = parseDcTitle(it.title);
+      return { ...it, title, author };
+    });
   dcItems.forEach((it, i) => { it.rank = i + 1; });
 
   // Render lists

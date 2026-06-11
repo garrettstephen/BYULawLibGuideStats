@@ -186,6 +186,23 @@ async function authHeaders(config) {
   return headers;
 }
 
+// Build a slug→author map from the WordPress REST API for Hunter's Query.
+// Returns empty object on any failure so the rest of the fetch is unaffected.
+async function fetchHqAuthors(siteUrl) {
+  const slugAuthor = {};
+  try {
+    const url = `${siteUrl.replace(/\/$/, '')}/wp-json/wp/v2/posts?per_page=100&_embed&_fields=slug,_embedded`;
+    const res = await fetch(url);
+    if (!res.ok) return slugAuthor;
+    const posts = await res.json();
+    for (const post of (Array.isArray(posts) ? posts : [])) {
+      const name = post._embedded?.author?.[0]?.name;
+      if (post.slug && name) slugAuthor[post.slug] = name;
+    }
+  } catch (_) {}
+  return slugAuthor;
+}
+
 async function fetchJson(url, headers) {
   const safeUrl = new URL(url);
   for (const key of ["key", "api_key", "apikey", "token", "access_token"]) {
@@ -506,6 +523,7 @@ async function main() {
       env("GA4_PROPERTY_FCIL"),
     ].filter(Boolean),
     ga4HuntersQuery: env("GA4_PROPERTY_HUNTERS_QUERY"),
+    hqSiteUrl: env("HQ_SITE_URL", "https://huntersquery.byu.edu"),
     ga4DigitalCommons: env("GA4_PROPERTY_DIGITAL_COMMONS"),
     siteParam: env("LIBGUIDES_SITE_PARAM", "site_id"),
     startParam: env("LIBGUIDES_START_PARAM", "start"),
@@ -599,18 +617,26 @@ async function main() {
 
   // Hunter's Query — top blog articles
   if (googleToken && config.ga4HuntersQuery) {
-    const rows = await fetchGa4TopPages(config.ga4HuntersQuery, googleToken, reportMonth.start, reportMonth.end, null, 50);
+    const [rows, hqAuthors] = await Promise.all([
+      fetchGa4TopPages(config.ga4HuntersQuery, googleToken, reportMonth.start, reportMonth.end, null, 50),
+      fetchHqAuthors(config.hqSiteUrl),
+    ]);
     if (rows) {
       const n = (v) => { const x = Number(v); return Number.isFinite(x) ? x : 0; };
       requests.huntersQuery = rows
         .filter(row => isHqArticle(row.dimensionValues[0].value))
-        .map((row, i) => ({
-          rank: i + 1,
-          title: slugToTitle(row.dimensionValues[0].value),
-          path: row.dimensionValues[0].value,
-          views: n(row.metricValues[0].value),
-          users: n(row.metricValues[1].value)
-        }))
+        .map((row, i) => {
+          const path = row.dimensionValues[0].value;
+          const slug = path.replace(/^\/|\/$/g, '');
+          return {
+            rank: i + 1,
+            title: slugToTitle(path),
+            path,
+            author: hqAuthors[slug] || '',
+            views: n(row.metricValues[0].value),
+            users: n(row.metricValues[1].value)
+          };
+        })
         .slice(0, 15);
     }
   }
