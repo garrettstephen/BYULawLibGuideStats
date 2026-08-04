@@ -4,11 +4,14 @@
     "/research",
     "/az.php"
   ],
-  "hunters_query": [],
+  "hunters_query": [
+    "/adobe/"
+  ],
   "digital_commons": [
     "/faculty_scholarship/",
     "/lawreview/all_issues.html",
     "/clarkmemorandum/index.2.html",
-    "/lawreview/editorialboard.html"
+    "/lawreview/editorialboard.html",
+    "/lawreview/lawreviewsymposium.html"
   ]
 }
