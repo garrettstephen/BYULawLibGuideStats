@@ -6,7 +6,7 @@ on:
     - cron: "24 10 * * *"
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -54,6 +54,18 @@ jobs:
           GA4_PROPERTY_FCIL: ${{ secrets.GA4_PROPERTY_FCIL }}
           GA4_PROPERTY_HUNTERS_QUERY: ${{ secrets.GA4_PROPERTY_HUNTERS_QUERY }}
           GA4_PROPERTY_DIGITAL_COMMONS: ${{ secrets.GA4_PROPERTY_DIGITAL_COMMONS }}
+
+      - name: Commit updated data files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add site/data/*.json
+          if git diff --cached --quiet; then
+            echo "No data changes to commit."
+          else
+            git commit -m "Update LibGuide stats data [auto]"
+            git push
+          fi
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
