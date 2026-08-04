@@ -1,0 +1,698 @@
+{
+  "generated_at": "2026-08-04T21:57:06.650Z",
+  "source": "libinsight-ga",
+  "reporting_month": {
+    "year": 2026,
+    "month": 6,
+    "start": "2026-06-01",
+    "end": "2026-06-30",
+    "label": "June 2026",
+    "previous_label": "May 2026",
+    "previous_start": "2026-05-01",
+    "previous_end": "2026-05-31"
+  },
+  "summary": {
+    "guide_views": 6851,
+    "guide_views_change_percent": -46.7,
+    "unique_users": 3284,
+    "unique_users_change_percent": -3.6,
+    "asset_clicks": 0,
+    "asset_clicks_change_percent": 0,
+    "average_time_on_guide": "Not tracked",
+    "average_time_change_percent": 0,
+    "published_guides": 308,
+    "published_guides_change_percent": 0,
+    "total_guides": 501
+  },
+  "top_guides": [
+    {
+      "guide_id": "1",
+      "title": "Family Law - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 1073,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 1,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "2",
+      "title": "Research Guides Home",
+      "url": "/research",
+      "views": 647,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 2,
+      "subject": "General Research",
+      "updated": ""
+    },
+    {
+      "guide_id": "3",
+      "title": "Any Legal Issue - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 512,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 3,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "4",
+      "title": "Housing and Landlord-Tenant Law - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 420,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 4,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "5",
+      "title": "Immigration Law - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 371,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 5,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "6",
+      "title": "A-Z Databases",
+      "url": "/az.php",
+      "views": 272,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 6,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "7",
+      "title": "Employment Law - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 221,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 7,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "8",
+      "title": "Debt and Bankruptcy - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 212,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 8,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "9",
+      "title": "ALL GUIDES Alphabetically",
+      "url": "/research",
+      "views": 199,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 9,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "10",
+      "title": "#1: How To Read A Legal Citation - Locating Legal Information in Primary and Secondary Resources",
+      "url": "/c.php",
+      "views": 189,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 10,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "11",
+      "title": "Legal Resource Guides - Locating Legal Information in Primary and Secondary Resources",
+      "url": "/c.php",
+      "views": 140,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 11,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "12",
+      "title": "Search",
+      "url": "/srch.php",
+      "views": 130,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 12,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "13",
+      "title": "Small Claims - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 125,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 13,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "14",
+      "title": "Elder Law - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 118,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 14,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "15",
+      "title": "All Legal Resources - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 115,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 15,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "16",
+      "title": "Civil Rights - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 112,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 16,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "17",
+      "title": "Home Page - Free and Low-Cost Legal Resources in Utah",
+      "url": "/legal-resources",
+      "views": 111,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 17,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "18",
+      "title": "Estate Planning - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 108,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 18,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "19",
+      "title": "#1A: Basic Legal Research Materials - Locating Legal Information in Primary and Secondary Resources",
+      "url": "/c.php",
+      "views": 95,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 19,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "20",
+      "title": "Criminal Law - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 92,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 20,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "21",
+      "title": "Disability Law - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 92,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 21,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "22",
+      "title": "Appeals - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 82,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 22,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "23",
+      "title": "Consumer Law - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php",
+      "views": 80,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 23,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "24",
+      "title": "Summer 2026 Agenda - LawLib Write-In Workshop (LLWW)",
+      "url": "/llww/agenda",
+      "views": 70,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 24,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "25",
+      "title": "Bar Exam Sample Essays - Study Aids for Law Students",
+      "url": "/c.php",
+      "views": 65,
+      "views_previous_month": 0,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 25,
+      "subject": "Other",
+      "updated": ""
+    }
+  ],
+  "top_assets": [],
+  "category_views": [
+    {
+      "category": "Public Services",
+      "views": 4061
+    },
+    {
+      "category": "Other",
+      "views": 2054
+    },
+    {
+      "category": "General Research",
+      "views": 825
+    },
+    {
+      "category": "FCIL",
+      "views": 78
+    },
+    {
+      "category": "Business & Tax",
+      "views": 13
+    }
+  ],
+  "weekly_trend": [
+    {
+      "label": "Wk 1",
+      "range": "Jun 1–7",
+      "views": 2697,
+      "previous_views": 0
+    },
+    {
+      "label": "Wk 2",
+      "range": "Jun 8–14",
+      "views": 3593,
+      "previous_views": 0
+    },
+    {
+      "label": "Wk 3",
+      "range": "Jun 15–21",
+      "views": 2162,
+      "previous_views": 0
+    },
+    {
+      "label": "Wk 4",
+      "range": "Jun 22–28",
+      "views": 3169,
+      "previous_views": 0
+    },
+    {
+      "label": "Wk 5",
+      "range": "Jun 29–30",
+      "views": 884,
+      "previous_views": 0
+    }
+  ],
+  "updates": [],
+  "methodology": "Guide views are counted when a guide page is loaded. Asset clicks are counted when users follow links to reusable LibGuides assets or external resources.",
+  "privacy": "This dashboard reports aggregate, de-identified usage data only. No personal identifiers are collected or displayed.",
+  "hunters_query": {
+    "top_articles": [
+      {
+        "rank": 1,
+        "title": "Changes To Bluebook In The New 22nd Edition",
+        "path": "/changes-to-bluebook-in-the-new-22nd-edition/",
+        "author": "",
+        "views": 69,
+        "users": 52
+      },
+      {
+        "rank": 2,
+        "title": "Researching Historical Utah Statutes And Code",
+        "path": "/researching-historical-utah-statutes-and-code/",
+        "author": "",
+        "views": 30,
+        "users": 24
+      },
+      {
+        "rank": 3,
+        "title": "Understanding How Congressional Bills Are Numbered",
+        "path": "/understanding-how-congressional-bills-are-numbered/",
+        "author": "",
+        "views": 22,
+        "users": 21
+      },
+      {
+        "rank": 4,
+        "title": "How To Use Ssrn A Source For The Hottest New Legal Scholarship",
+        "path": "/how-to-use-ssrn-a-source-for-the-hottest-new-legal-scholarship/",
+        "author": "",
+        "views": 18,
+        "users": 19
+      },
+      {
+        "rank": 5,
+        "title": "Adobe",
+        "path": "/adobe/",
+        "author": "",
+        "views": 14,
+        "users": 14
+      },
+      {
+        "rank": 6,
+        "title": "New U S Civil Rights Database",
+        "path": "/new-u-s-civil-rights-database/",
+        "author": "",
+        "views": 14,
+        "users": 11
+      },
+      {
+        "rank": 7,
+        "title": "Upcoming Library Workshop Legal Analytics",
+        "path": "/upcoming-library-workshop-legal-analytics/",
+        "author": "",
+        "views": 13,
+        "users": 3
+      },
+      {
+        "rank": 8,
+        "title": "Casetext With Cara Ai Keyword Free Legal Research",
+        "path": "/casetext-with-cara-ai-keyword-free-legal-research/",
+        "author": "",
+        "views": 12,
+        "users": 12
+      },
+      {
+        "rank": 9,
+        "title": "Ai Resources For Students",
+        "path": "/ai-resources-for-students/",
+        "author": "",
+        "views": 11,
+        "users": 10
+      },
+      {
+        "rank": 10,
+        "title": "Beginners Bluebook Guide",
+        "path": "/beginners-bluebook-guide/",
+        "author": "",
+        "views": 10,
+        "users": 8
+      },
+      {
+        "rank": 11,
+        "title": "Historical Utah Codes",
+        "path": "/historical-utah-codes/",
+        "author": "",
+        "views": 10,
+        "users": 8
+      },
+      {
+        "rank": 12,
+        "title": "Accessing Xchange In The Byu Law Library",
+        "path": "/accessing-xchange-in-the-byu-law-library/",
+        "author": "",
+        "views": 9,
+        "users": 9
+      },
+      {
+        "rank": 13,
+        "title": "Hidden And Unique Places To Study In The Law Library",
+        "path": "/hidden-and-unique-places-to-study-in-the-law-library/",
+        "author": "",
+        "views": 9,
+        "users": 8
+      },
+      {
+        "rank": 14,
+        "title": "Construction Update Accessing Materials In The Reserve Room",
+        "path": "/construction-update-accessing-materials-in-the-reserve-room/",
+        "author": "",
+        "views": 8,
+        "users": 8
+      },
+      {
+        "rank": 15,
+        "title": "Stata",
+        "path": "/stata/",
+        "author": "",
+        "views": 8,
+        "users": 8
+      }
+    ]
+  },
+  "digital_commons": {
+    "top_items": [
+      {
+        "rank": 1,
+        "title": "\"Why the National Popular Vote Compact is Unconstitutional\" by Norman R. Williams",
+        "path": "/lawreview/vol2012/iss5/3/",
+        "section": "lawreview",
+        "views": 412,
+        "users": 331
+      },
+      {
+        "rank": 2,
+        "title": "Faculty Scholarship",
+        "path": "/faculty_scholarship/",
+        "section": "faculty_scholarship",
+        "views": 195,
+        "users": 29
+      },
+      {
+        "rank": 3,
+        "title": "\"Taxing Data\" by Omri Marian",
+        "path": "/lawreview/vol47/iss2/7/",
+        "section": "lawreview",
+        "views": 127,
+        "users": 75
+      },
+      {
+        "rank": 4,
+        "title": "Law Review Symposium",
+        "path": "/lawreview/lawreviewsymposium.html",
+        "section": "lawreview",
+        "views": 124,
+        "users": 87
+      },
+      {
+        "rank": 5,
+        "title": "\"Christian Lawyers in the Public Interest and Outside the Political Right\" by Jennifer Lee Koh",
+        "path": "/lawreview/vol51/iss5/6/",
+        "section": "lawreview",
+        "views": 87,
+        "users": 77
+      },
+      {
+        "rank": 6,
+        "title": "\"The Spirit of Jubilee\" by Christopher D. Hampson",
+        "path": "/lawreview/vol51/iss5/7/",
+        "section": "lawreview",
+        "views": 60,
+        "users": 45
+      },
+      {
+        "rank": 7,
+        "title": "\"Slavery and the Myth of Religious Liberty\" by Audra Lyn Savage",
+        "path": "/lawreview/vol51/iss5/8/",
+        "section": "lawreview",
+        "views": 57,
+        "users": 38
+      },
+      {
+        "rank": 8,
+        "title": "\"Corruption in University Admissions and the Administrative Allocation \" by L. Burke Files, Roger E. Meiners et al.",
+        "path": "/lawreview/vol47/iss1/6/",
+        "section": "lawreview",
+        "views": 54,
+        "users": 47
+      },
+      {
+        "rank": 9,
+        "title": "\"The Once and Future Freedom of the Church: Three Stories\" by Steven D. Smith",
+        "path": "/lawreview/vol51/iss5/5/",
+        "section": "lawreview",
+        "views": 53,
+        "users": 46
+      },
+      {
+        "rank": 10,
+        "title": "BYU Law Review: All Issues",
+        "path": "/lawreview/all_issues.html",
+        "section": "lawreview",
+        "views": 44,
+        "users": 25
+      },
+      {
+        "rank": 11,
+        "title": "\"Risk Taking and Rights Balancing in Intellectual Property Law\" by Clark D. Asay",
+        "path": "/faculty_scholarship/383/",
+        "section": "faculty_scholarship",
+        "views": 42,
+        "users": 9
+      },
+      {
+        "rank": 12,
+        "title": "\"Corpus Linguistics as a Tool in Legal Interpretation\" by Lawrence M. Solan and Tammy Gales",
+        "path": "/lawreview/vol2017/iss6/5/",
+        "section": "lawreview",
+        "views": 40,
+        "users": 31
+      },
+      {
+        "rank": 13,
+        "title": "\"The Prosecutor Vacancy Crisis\" by Adam M. Gershowitz",
+        "path": "/lawreview/vol50/iss2/8/",
+        "section": "lawreview",
+        "views": 39,
+        "users": 30
+      },
+      {
+        "rank": 14,
+        "title": "BYU Law Review | Vol 51 | Iss 5",
+        "path": "/lawreview/vol51/iss5/",
+        "section": "lawreview",
+        "views": 39,
+        "users": 33
+      },
+      {
+        "rank": 15,
+        "title": "\"SAVING CAMELOT? NIL and the Future of Amateurism\" by William W. Berry III",
+        "path": "/lawreview/vol50/iss2/6/",
+        "section": "lawreview",
+        "views": 37,
+        "users": 21
+      },
+      {
+        "rank": 16,
+        "title": "\"Regulating Beauty: Advertising Restrictions, the First Amendment, and the Rise of Social Media Model\" by Annie Miner",
+        "path": "/lawreview/vol51/iss4/9/",
+        "section": "lawreview",
+        "views": 37,
+        "users": 22
+      },
+      {
+        "rank": 17,
+        "title": "BYU Law Review | Vol 51 | Iss 4",
+        "path": "/lawreview/vol51/iss4/",
+        "section": "lawreview",
+        "views": 36,
+        "users": 22
+      },
+      {
+        "rank": 18,
+        "title": "BYU Law Review | Vol 51 | Iss 6",
+        "path": "/lawreview/vol51/iss6/",
+        "section": "lawreview",
+        "views": 36,
+        "users": 14
+      },
+      {
+        "rank": 19,
+        "title": "\"Going Generic: A Linguistics Approach to Genericide in Trademark Law\" by James A. Heilpern, William G. Eggington et al.",
+        "path": "/lawreview/vol50/iss1/8/",
+        "section": "lawreview",
+        "views": 31,
+        "users": 26
+      },
+      {
+        "rank": 20,
+        "title": "\"Rethinking Copyright Harmonization\" by Clark D. Asay",
+        "path": "/faculty_scholarship/375/",
+        "section": "faculty_scholarship",
+        "views": 30,
+        "users": 11
+      }
+    ]
+  },
+  "hidden_paths": {
+    "libguides": [
+      "/srch.php",
+      "/research",
+      "/az.php"
+    ],
+    "hunters_query": [
+      "/adobe/"
+    ],
+    "digital_commons": [
+      "/faculty_scholarship/",
+      "/lawreview/all_issues.html",
+      "/clarkmemorandum/index.2.html",
+      "/lawreview/editorialboard.html",
+      "/lawreview/lawreviewsymposium.html",
+      "/lawreview/policies.html",
+      "/lawreview/contact.html",
+      "/lawreview/about.html",
+      "/lawreview/aimsandscope.html",
+      "/lawreview/vol51/iss5/",
+      "/lawreview/vol2010/iss3/"
+    ]
+  }
+}
