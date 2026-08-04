@@ -229,15 +229,6 @@ html, body {
   color: var(--muted);
 }
 
-#ftr-right #hdr-month {
-  color: var(--gold);
-  font-size: 0.95rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-}
-
-.ftr-sep { color: var(--gold-dim); margin: 0 6px; }
-
 #ftr-updated {
   font-size: 0.74rem;
   color: var(--muted);

@@ -78,10 +78,6 @@ async function boot() {
   const overrides = (overridesRes.status === 'fulfilled' && overridesRes.value.ok)
     ? await overridesRes.value.json() : {};
 
-  // Header month
-  const hdrMonth = document.getElementById('hdr-month');
-  if (hdrMonth) hdrMonth.textContent = data.reporting_month?.label || '';
-
   // Footer updated
   const ftrUpdated = document.getElementById('ftr-updated');
   if (ftrUpdated && data.generated_at) {
