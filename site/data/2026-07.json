@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T21:47:41.926Z",
+  "generated_at": "2026-08-04T21:48:33.541Z",
   "source": "libinsight-ga",
   "reporting_month": {
     "year": 2026,
@@ -692,7 +692,11 @@
       "/lawreview/editorialboard.html",
       "/lawreview/lawreviewsymposium.html",
       "/lawreview/policies.html",
-      "/lawreview/contact.html"
+      "/lawreview/contact.html",
+      "/lawreview/about.html",
+      "/lawreview/aimsandscope.html",
+      "/lawreview/vol51/iss5/",
+      "/lawreview/vol2010/iss3/"
     ]
   }
 }
