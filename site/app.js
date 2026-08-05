@@ -16,7 +16,7 @@ function parseDcTitle(raw) {
 
 function qrSrc(url) {
   return 'https://api.qrserver.com/v1/create-qr-code/'
-    + '?size=130x130&color=ffffff&bgcolor=001428'
+    + '?size=92x92&color=ffffff&bgcolor=001428'
     + '&data=' + encodeURIComponent(url);
 }
 
@@ -25,7 +25,7 @@ function renderQr(containerId, url) {
   if (!el || !url) return;
   const display = url.replace(/^https?:\/\//, '').replace(/\/$/, '');
   el.innerHTML = `
-    <img src="${qrSrc(url)}" alt="Scan to visit" class="qr-img" width="130" height="130" loading="lazy">
+    <img src="${qrSrc(url)}" alt="Scan to visit" class="qr-img" width="92" height="92" loading="lazy">
     <div class="qr-text">
       <span class="qr-label">Scan to visit</span>
       <span class="qr-url">${display}</span>
