@@ -15,6 +15,37 @@ def register_lib_guide_stats_routes(app, deps):
     github_owner = deps.get('GITHUB_REPO_OWNER', '')
     github_repo  = deps.get('GITHUB_REPO_NAME', '')
 
+    # Dashboard-edited config (hidden paths, kiosk config, item overrides, DC annual
+    # stats) is written to state_dir, which is outside the git-tracked tree (*.json is
+    # gitignored outside site/data/). Writing into site/data/ used to leave the clone
+    # dirty, which made the hourly `git pull --ff-only` cron fail indefinitely.
+    # Push-to-kiosk still publishes these files to site/data/ on GitHub for the public
+    # site. Reads fall back to the repo copy until a file has been saved here once.
+    state_dir = os.path.join(os.path.dirname(os.path.dirname(data_dir)), 'state')
+
+    def _state_read_path(name):
+        p = os.path.join(state_dir, name)
+        return p if os.path.exists(p) else os.path.join(data_dir, name)
+
+    def _read_state(name, default):
+        p = _state_read_path(name)
+        if os.path.exists(p):
+            try:
+                with open(p) as f:
+                    return json.load(f)
+            except Exception:
+                pass
+        return default
+
+    def _write_state(name, obj):
+        os.makedirs(state_dir, exist_ok=True)
+        p = os.path.join(state_dir, name)
+        tmp = f'{p}.tmp.{os.getpid()}'
+        with open(tmp, 'w') as f:
+            json.dump(obj, f, indent=2)
+            f.write('\n')
+        os.replace(tmp, p)
+
     def _available_months():
         if not os.path.isdir(data_dir):
             return []
@@ -40,19 +71,11 @@ def register_lib_guide_stats_routes(app, deps):
             return None, f'Failed to read: {e}'
 
     def _get_hidden():
-        hp_file = os.path.join(data_dir, 'hidden-paths.json')
-        if os.path.exists(hp_file):
-            try:
-                with open(hp_file) as f:
-                    return json.load(f)
-            except Exception:
-                pass
-        return {'libguides': [], 'hunters_query': [], 'digital_commons': []}
+        return _read_state('hidden-paths.json',
+                           {'libguides': [], 'hunters_query': [], 'digital_commons': []})
 
     def _save_hidden(hp):
-        hp_file = os.path.join(data_dir, 'hidden-paths.json')
-        with open(hp_file, 'w') as f:
-            json.dump(hp, f, indent=2)
+        _write_state('hidden-paths.json', hp)
 
     # ── Page routes ──────────────────────────────────────────────────
 
@@ -203,20 +226,10 @@ def register_lib_guide_stats_routes(app, deps):
     }
 
     def _get_kiosk_config():
-        cfg_file = os.path.join(data_dir, 'kiosk-config.json')
-        if os.path.exists(cfg_file):
-            try:
-                with open(cfg_file) as f:
-                    return json.load(f)
-            except Exception:
-                pass
-        return DEFAULT_KIOSK_CONFIG
+        return _read_state('kiosk-config.json', DEFAULT_KIOSK_CONFIG)
 
     def _save_kiosk_config(cfg):
-        cfg_file = os.path.join(data_dir, 'kiosk-config.json')
-        with open(cfg_file, 'w') as f:
-            json.dump(cfg, f, indent=2)
-            f.write('\n')
+        _write_state('kiosk-config.json', cfg)
 
     @app.route('/api/lib-guide-stats/kiosk-config', methods=['GET'])
     @require_auth
@@ -236,23 +249,12 @@ def register_lib_guide_stats_routes(app, deps):
 
     # ── Item display overrides ───────────────────────────────────────────
 
-    def _item_overrides_path():
-        return os.path.join(data_dir, 'item-overrides.json')
-
     def _get_item_overrides():
-        f = _item_overrides_path()
-        if os.path.exists(f):
-            try:
-                with open(f) as fp:
-                    return json.load(fp)
-            except Exception:
-                pass
-        return {'digital_commons': {}, 'hunters_query': {}, 'libguides': {}}
+        return _read_state('item-overrides.json',
+                           {'digital_commons': {}, 'hunters_query': {}, 'libguides': {}})
 
     def _save_item_overrides(d):
-        with open(_item_overrides_path(), 'w') as fp:
-            json.dump(d, fp, indent=2)
-            fp.write('\n')
+        _write_state('item-overrides.json', d)
 
     @app.route('/api/lib-guide-stats/item-overrides', methods=['GET'])
     @require_auth
@@ -283,23 +285,11 @@ def register_lib_guide_stats_routes(app, deps):
 
     # ── DC annual statistics ─────────────────────────────────────────────
 
-    def _dc_annual_stats_path():
-        return os.path.join(data_dir, 'dc-annual-stats.json')
-
     def _get_dc_annual_stats():
-        f = _dc_annual_stats_path()
-        if os.path.exists(f):
-            try:
-                with open(f) as fp:
-                    return json.load(fp)
-            except Exception:
-                pass
-        return {'datasets': []}
+        return _read_state('dc-annual-stats.json', {'datasets': []})
 
     def _save_dc_annual_stats(d):
-        with open(_dc_annual_stats_path(), 'w') as fp:
-            json.dump(d, fp, indent=2)
-            fp.write('\n')
+        _write_state('dc-annual-stats.json', d)
 
     @app.route('/api/lib-guide-stats/dc-annual-stats', methods=['GET'])
     @require_auth
@@ -378,7 +368,7 @@ def register_lib_guide_stats_routes(app, deps):
         # Push kiosk-config.json
         err = _push_file(
             'site/data/kiosk-config.json',
-            os.path.join(data_dir, 'kiosk-config.json'),
+            _state_read_path('kiosk-config.json'),
             'Update kiosk config [auto]',
         )
         if err:
@@ -387,19 +377,18 @@ def register_lib_guide_stats_routes(app, deps):
         # Push hidden-paths.json so visibility changes take effect on kiosk
         err = _push_file(
             'site/data/hidden-paths.json',
-            os.path.join(data_dir, 'hidden-paths.json'),
+            _state_read_path('hidden-paths.json'),
             'Update hidden paths [auto]',
         )
         if err:
             return jsonify({'error': err}), 502
 
         # Push item-overrides.json so title/author edits appear on kiosk
-        ovp = _item_overrides_path()
-        if not os.path.exists(ovp):
+        if not os.path.exists(_state_read_path('item-overrides.json')):
             _save_item_overrides({'digital_commons': {}, 'hunters_query': {}, 'libguides': {}})
         err = _push_file(
             'site/data/item-overrides.json',
-            ovp,
+            _state_read_path('item-overrides.json'),
             'Update item overrides [auto]',
         )
         if err:
