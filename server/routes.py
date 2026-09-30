@@ -26,6 +26,10 @@ def register_lib_guide_stats_routes(app, deps):
         return sorted(months)
 
     def _load_data(month=None):
+        # month comes straight from the query string -- only ever allow YYYY-MM so it
+        # can't be used to walk out of data_dir (e.g. month=../../../admin/config/users).
+        if month and not re.fullmatch(r'\d{4}-\d{2}', month):
+            return None, 'Invalid month (expected YYYY-MM).'
         path = os.path.join(data_dir, f'{month}.json') if month else data_file
         if not os.path.exists(path):
             return None, f'No data for {month}' if month else 'No data file found.'
@@ -87,6 +91,8 @@ def register_lib_guide_stats_routes(app, deps):
     @require_auth
     def lib_guide_stats_data():
         month = request.args.get('month')
+        if month and not re.fullmatch(r'\d{4}-\d{2}', month):
+            return jsonify({'error': 'Invalid month (expected YYYY-MM).'}), 400
         data, err = _load_data(month)
         if err:
             return jsonify({
