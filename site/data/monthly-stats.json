@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-01T17:04:07.651Z",
+  "generated_at": "2026-10-02T16:18:19.445Z",
   "source": "libinsight-ga",
   "reporting_month": {
     "year": 2026,
@@ -12,10 +12,10 @@
     "previous_end": "2026-08-31"
   },
   "summary": {
-    "guide_views": 6306,
-    "guide_views_change_percent": -40.8,
-    "unique_users": 4314,
-    "unique_users_change_percent": -13.9,
+    "guide_views": 6465,
+    "guide_views_change_percent": -39.4,
+    "unique_users": 4432,
+    "unique_users_change_percent": -11.6,
     "asset_clicks": 0,
     "asset_clicks_change_percent": 0,
     "average_time_on_guide": "Not tracked",
@@ -407,48 +407,48 @@
         "title": "Access Your Ny Times Subscription Now",
         "path": "/access-your-ny-times-subscription-now/",
         "author": "",
-        "views": 29,
-        "users": 19
+        "views": 30,
+        "users": 20
       },
       {
         "rank": 3,
-        "title": "Understanding How Congressional Bills Are Numbered",
-        "path": "/understanding-how-congressional-bills-are-numbered/",
-        "author": "",
-        "views": 28,
-        "users": 27
-      },
-      {
-        "rank": 4,
         "title": "A Guide To The Pca Icj And Icc",
         "path": "/a-guide-to-the-pca-icj-and-icc/",
         "author": "",
-        "views": 27,
-        "users": 24
+        "views": 29,
+        "users": 26
+      },
+      {
+        "rank": 4,
+        "title": "Understanding How Congressional Bills Are Numbered",
+        "path": "/understanding-how-congressional-bills-are-numbered/",
+        "author": "",
+        "views": 29,
+        "users": 27
       },
       {
         "rank": 5,
         "title": "Vendor Neutral Citation",
         "path": "/vendor-neutral-citation/",
         "author": "",
-        "views": 26,
-        "users": 25
+        "views": 27,
+        "users": 26
       },
       {
         "rank": 6,
-        "title": "Ai Resources For Students",
-        "path": "/ai-resources-for-students/",
-        "author": "",
-        "views": 25,
-        "users": 22
-      },
-      {
-        "rank": 7,
         "title": "Zoom Booths",
         "path": "/zoom-booths/",
         "author": "",
-        "views": 23,
-        "users": 16
+        "views": 27,
+        "users": 20
+      },
+      {
+        "rank": 7,
+        "title": "Ai Resources For Students",
+        "path": "/ai-resources-for-students/",
+        "author": "",
+        "views": 26,
+        "users": 23
       },
       {
         "rank": 8,
@@ -463,11 +463,19 @@
         "title": "Beginners Bluebook Guide",
         "path": "/beginners-bluebook-guide/",
         "author": "",
-        "views": 15,
-        "users": 15
+        "views": 17,
+        "users": 17
       },
       {
         "rank": 10,
+        "title": "The Reference Assistant Team For Winter 2026",
+        "path": "/the-reference-assistant-team-for-winter-2026/",
+        "author": "",
+        "views": 14,
+        "users": 6
+      },
+      {
+        "rank": 11,
         "title": "Casetext With Cara Ai Keyword Free Legal Research",
         "path": "/casetext-with-cara-ai-keyword-free-legal-research/",
         "author": "",
@@ -475,15 +483,23 @@
         "users": 9
       },
       {
-        "rank": 11,
-        "title": "The Reference Assistant Team For Winter 2026",
-        "path": "/the-reference-assistant-team-for-winter-2026/",
+        "rank": 12,
+        "title": "Researching Historical Utah Statutes And Code",
+        "path": "/researching-historical-utah-statutes-and-code/",
         "author": "",
-        "views": 13,
-        "users": 6
+        "views": 11,
+        "users": 8
       },
       {
-        "rank": 12,
+        "rank": 13,
+        "title": "A Birds Eye View Of Tax Research Databases",
+        "path": "/a-birds-eye-view-of-tax-research-databases/",
+        "author": "",
+        "views": 9,
+        "users": 9
+      },
+      {
+        "rank": 14,
         "title": "Fcil Lunch And Learn Treaty Research",
         "path": "/fcil-lunch-and-learn-treaty-research/",
         "author": "",
@@ -491,27 +507,11 @@
         "users": 9
       },
       {
-        "rank": 13,
+        "rank": 15,
         "title": "Get A Perma Cc Account For Free",
         "path": "/get-a-perma-cc-account-for-free/",
         "author": "",
         "views": 9,
-        "users": 8
-      },
-      {
-        "rank": 14,
-        "title": "Westlaw Precision Has Launched How Is It Different",
-        "path": "/westlaw-precision-has-launched-how-is-it-different/",
-        "author": "",
-        "views": 9,
-        "users": 9
-      },
-      {
-        "rank": 15,
-        "title": "Byu Law Alum To Clerk For Scotus",
-        "path": "/byu-law-alum-to-clerk-for-scotus/",
-        "author": "",
-        "views": 8,
         "users": 8
       }
     ]
