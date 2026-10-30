@@ -4,7 +4,23 @@ import re
 import base64
 import urllib.request
 import urllib.error
+import threading
 from flask import render_template, jsonify, request
+
+SECTIONS = ('libguides', 'hunters_query', 'digital_commons')
+GITHUB_TIMEOUT = 20
+
+
+def guide_key(g):
+    """Identity of a LibGuides row for hide/override/all-time purposes.
+
+    Data fetched before 2026-10-30 stored every content page as a bare '/c.php' (GA4's
+    pagePath drops the ?g=&p= query), so for those rows the title is the only thing
+    that tells guides apart."""
+    url = g.get('url') or ''
+    if not url or url.split('?')[0] in ('/c.php', '/content.php') and '?' not in url:
+        return g.get('title') or url
+    return url
 
 
 def register_lib_guide_stats_routes(app, deps):
@@ -22,6 +38,8 @@ def register_lib_guide_stats_routes(app, deps):
     # Push-to-kiosk still publishes these files to site/data/ on GitHub for the public
     # site. Reads fall back to the repo copy until a file has been saved here once.
     state_dir = os.path.join(os.path.dirname(os.path.dirname(data_dir)), 'state')
+    # One process, several request threads: serialize read-modify-write of state files.
+    state_lock = threading.Lock()
 
     def _state_read_path(name):
         p = os.path.join(state_dir, name)
@@ -139,66 +157,72 @@ def register_lib_guide_stats_routes(app, deps):
         path = body.get('path')
         hidden = body.get('hidden', True)
 
-        if not section or not path:
-            return jsonify({'error': 'section and path required'}), 400
+        if section not in SECTIONS or not isinstance(path, str) or not path:
+            return jsonify({'error': 'valid section and path required'}), 400
 
-        hp = _get_hidden()
-        if section not in hp:
-            hp[section] = []
-        if hidden and path not in hp[section]:
-            hp[section].append(path)
-        elif not hidden:
-            hp[section] = [p for p in hp[section] if p != path]
-
-        _save_hidden(hp)
+        with state_lock:
+            hp = _get_hidden()
+            if section not in hp:
+                hp[section] = []
+            if hidden and path not in hp[section]:
+                hp[section].append(path)
+            elif not hidden:
+                hp[section] = [p for p in hp[section] if p != path]
+            _save_hidden(hp)
         return jsonify({'ok': True, 'hidden_paths': hp})
 
     @app.route('/api/lib-guide-stats/all-time/<section>')
     @require_auth
     def lib_guide_stats_all_time(section):
+        if section not in SECTIONS + ('fcil',):
+            return jsonify({'error': f'Unknown section: {section}'}), 404
         months = _available_months()
         if not months:
             return jsonify({'error': 'No archived data available yet.', 'months': []}), 404
 
+        # Months are walked oldest -> newest, so titles/subjects end up as the latest ones.
         agg = {}
+
+        def add_guide(g, with_subject):
+            key = guide_key(g)
+            row = agg.setdefault(key, {'path': key, 'views': 0, 'users': 0})
+            row['title'] = g.get('title') or row.get('title') or 'Untitled'
+            if g.get('link'):
+                row['link'] = g['link']
+            if with_subject:
+                row['subject'] = g.get('subject', '')
+            row['views'] += g.get('views', 0) or 0
+
+        def add_item(item, extra=()):
+            key = item.get('path') or item.get('title', '')
+            row = agg.setdefault(key, {'path': key, 'views': 0, 'users': 0})
+            row['title'] = item.get('title') or row.get('title') or 'Untitled'
+            for f in extra:
+                row[f] = item.get(f, '')
+            row['views'] += item.get('views', 0) or 0
+            row['users'] += item.get('users', 0) or 0
+
         for month in months:
             data, err = _load_data(month)
             if err or not data:
                 continue
-
             if section == 'libguides':
                 for g in data.get('top_guides', []):
-                    key = g.get('url') or g.get('title', '')
-                    if key not in agg:
-                        agg[key] = {'title': g['title'], 'path': key,
-                                    'subject': g.get('subject', ''), 'views': 0}
-                    agg[key]['views'] += g.get('views', 0)
-
+                    add_guide(g, True)
+            elif section == 'fcil':
+                # Newer data carries a dedicated FCIL list (FCIL guides rarely make the overall
+                # top 25); older months only have whatever FCIL guides made the top 25.
+                fcil = (data.get('fcil') or {}).get('top_guides')
+                if fcil is None:
+                    fcil = [g for g in data.get('top_guides', []) if g.get('subject') == 'FCIL']
+                for g in fcil:
+                    add_guide(g, False)
             elif section == 'hunters_query':
                 for item in data.get('hunters_query', {}).get('top_articles', []):
-                    key = item['path']
-                    if key not in agg:
-                        agg[key] = {'title': item['title'], 'path': key, 'views': 0, 'users': 0}
-                    agg[key]['views'] += item.get('views', 0)
-                    agg[key]['users'] += item.get('users', 0)
-
+                    add_item(item, ('author',))
             elif section == 'digital_commons':
                 for item in data.get('digital_commons', {}).get('top_items', []):
-                    key = item['path']
-                    if key not in agg:
-                        agg[key] = {'title': item['title'], 'path': key,
-                                    'section': item.get('section', ''), 'views': 0, 'users': 0}
-                    agg[key]['views'] += item.get('views', 0)
-                    agg[key]['users'] += item.get('users', 0)
-
-            elif section == 'fcil':
-                for g in data.get('top_guides', []):
-                    if g.get('subject') != 'FCIL':
-                        continue
-                    key = g.get('url') or g.get('title', '')
-                    if key not in agg:
-                        agg[key] = {'title': g['title'], 'path': key, 'views': 0, 'users': 0}
-                    agg[key]['views'] += g.get('views', 0)
+                    add_item(item, ('section',))
 
         items = sorted(agg.values(), key=lambda x: -x['views'])
         for i, it in enumerate(items):
@@ -243,8 +267,14 @@ def register_lib_guide_stats_routes(app, deps):
         sections = body.get('sections')
         if not sections or not isinstance(sections, dict):
             return jsonify({'error': 'sections dict required'}), 400
-        cfg = {'sections': sections}
-        _save_kiosk_config(cfg)
+        clean = {}
+        for name in SECTIONS:
+            url = ((sections.get(name) or {}).get('url') or '').strip()
+            if url and not re.match(r'^https?://\S+$', url):
+                return jsonify({'error': f'{name} URL must start with http:// or https://'}), 400
+            clean[name] = {'url': url}
+        with state_lock:
+            _save_kiosk_config({'sections': clean})
         return jsonify({'ok': True})
 
     # ── Item display overrides ───────────────────────────────────────────
@@ -267,20 +297,21 @@ def register_lib_guide_stats_routes(app, deps):
         body = request.get_json(force=True, silent=True) or {}
         section = body.get('section')
         key = body.get('key')
-        if not section or not key:
-            return jsonify({'error': 'section and key required'}), 400
-        ov = _get_item_overrides()
-        if section not in ov:
-            ov[section] = {}
-        title = (body.get('title') or '').strip()
-        author = (body.get('author') or '').strip()
-        if title or author:
-            ov[section][key] = {}
-            if title:  ov[section][key]['title'] = title
-            if author: ov[section][key]['author'] = author
-        else:
-            ov[section].pop(key, None)
-        _save_item_overrides(ov)
+        if section not in SECTIONS or not isinstance(key, str) or not key:
+            return jsonify({'error': 'valid section and key required'}), 400
+        title = str(body.get('title') or '').strip()
+        author = str(body.get('author') or '').strip()
+        with state_lock:
+            ov = _get_item_overrides()
+            if section not in ov:
+                ov[section] = {}
+            if title or author:
+                ov[section][key] = {}
+                if title:  ov[section][key]['title'] = title
+                if author: ov[section][key]['author'] = author
+            else:
+                ov[section].pop(key, None)
+            _save_item_overrides(ov)
         return jsonify({'ok': True, 'override': ov[section].get(key, {})})
 
     # ── DC annual statistics ─────────────────────────────────────────────
@@ -300,9 +331,12 @@ def register_lib_guide_stats_routes(app, deps):
     @require_auth
     def lib_guide_stats_save_dc_annual():
         body = request.get_json(force=True, silent=True) or {}
-        if 'datasets' not in body or not isinstance(body['datasets'], list):
+        datasets = body.get('datasets')
+        if not isinstance(datasets, list) or not all(
+                isinstance(ds, dict) and isinstance(ds.get('years', []), list) for ds in datasets):
             return jsonify({'error': 'datasets array required'}), 400
-        _save_dc_annual_stats(body)
+        with state_lock:
+            _save_dc_annual_stats({'datasets': datasets})
         return jsonify({'ok': True})
 
     # ── Push to public kiosk ─────────────────────────────────────────
@@ -338,11 +372,13 @@ def register_lib_guide_stats_routes(app, deps):
             try:
                 req = urllib.request.Request(
                     f'{api_base}/contents/{repo_path}', headers=gh_headers)
-                with urllib.request.urlopen(req) as resp:
+                with urllib.request.urlopen(req, timeout=GITHUB_TIMEOUT) as resp:
                     sha = json.loads(resp.read()).get('sha', '')
             except urllib.error.HTTPError as e:
                 if e.code != 404:
                     return f'GitHub API error (get {repo_path}): {e.code}'
+            except (urllib.error.URLError, TimeoutError) as e:
+                return f'Could not reach GitHub: {e}'
 
             put_body = {
                 'message': commit_message,
@@ -358,11 +394,13 @@ def register_lib_guide_stats_routes(app, deps):
                     headers=gh_headers,
                     method='PUT',
                 )
-                with urllib.request.urlopen(req):
+                with urllib.request.urlopen(req, timeout=GITHUB_TIMEOUT):
                     pass
             except urllib.error.HTTPError as e:
                 body_txt = e.read().decode('utf-8', errors='replace')
                 return f'GitHub API error (put {repo_path}): {e.code} — {body_txt[:200]}'
+            except (urllib.error.URLError, TimeoutError) as e:
+                return f'Could not reach GitHub: {e}'
             return None
 
         # Push kiosk-config.json
@@ -402,9 +440,11 @@ def register_lib_guide_stats_routes(app, deps):
                 headers=gh_headers,
                 method='POST',
             )
-            with urllib.request.urlopen(req):
+            with urllib.request.urlopen(req, timeout=GITHUB_TIMEOUT):
                 pass
         except urllib.error.HTTPError as e:
             return jsonify({'error': f'GitHub API error (dispatch): {e.code}'}), 502
+        except (urllib.error.URLError, TimeoutError) as e:
+            return jsonify({'error': f'Could not reach GitHub: {e}'}), 502
 
         return jsonify({'ok': True, 'message': 'Config and visibility pushed, workflow triggered.'})

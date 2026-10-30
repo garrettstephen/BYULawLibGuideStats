@@ -1,15 +1,25 @@
-# BYULawLibGuideStats
+# Digital Library Stats (repo: BYULawLibGuideStats)
 
-A static public dashboard for BYU Law Library LibGuide usage. Private LibGuides credentials stay server-side in GitHub Actions or a local `.env`; the published page only receives aggregate JSON.
+Monthly usage stats for the BYU Law Library's LibGuides, Hunter's Query blog, and Digital Commons. Named "LibGuide Stats" until 2026-10-30; the repo name, `lib_guide_stats` app key, `/lib-guide-stats` URLs, and `hunterlaw-lib-guide-stats` service keep the old name.
 
-## What It Shows
+There are two front ends:
 
-- Top guides for the reporting month
-- Month-over-month guide-view movement
-- Most used LibGuide asset types
-- Guide views by subject/category
-- Recently updated guides
-- Methodology and privacy notes
+- **Public kiosk** (`site/`, GitHub Pages) -- a 3-column top-10 display with QR codes. It only ever receives aggregate JSON.
+- **Internal dashboard** (`server/routes.py` + `apps/admin/templates/lib_guide_stats*.html`, behind the Library Tools login) -- monthly tables with month-over-month change, all-time rollups (incl. FCIL), hide/show and title/author edits for the kiosk, Digital Commons annual statistics, kiosk QR URLs, and a "Push to Public Kiosk" button.
+
+## Where the numbers come from
+
+`scripts/fetch-libguides-stats.js` runs daily in GitHub Actions and rebuilds the previous month (set `REPORT_MONTH=YYYY-MM` to rebuild a specific month):
+
+- Site-wide guide views/users: LibInsight's Google Analytics dataset.
+- Per-guide rows: GA4 Data API over the LibGuides, Research Guides, and FCIL properties. These properties **overlap** (LibGuides covers the whole site; the other two are subsets), so per-page and per-day numbers take the max across properties, never the sum. Pages are keyed by `pagePathPlusQueryString`, trimmed to the identifying params (`/c.php?g=…&p=…`). Pages tracked by the FCIL property are tagged FCIL and also saved in a separate `fcil.top_guides` list.
+- Hunter's Query and Digital Commons: their own GA4 properties (HQ authors come from the WordPress API).
+
+Before 2026-10-30 the script used `pagePath` (every content page collapsed to `/c.php`) and summed the overlapping properties (per-guide views were about 2x too high). The dashboard and kiosk fall back to the guide title as the key for those older `/c.php` rows.
+
+## Dashboard state
+
+Hide/show, title edits, kiosk URLs, and DC annual stats are saved to `state/` (untracked) so the hourly `git pull --ff-only` cron never hits a dirty tree. "Push to Public Kiosk" commits the kiosk-relevant files to `site/data/` on GitHub and triggers the publish workflow.
 
 ## Repo Structure
 

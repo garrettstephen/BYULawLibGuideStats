@@ -84,7 +84,9 @@ async function fetchGa4Pages(propertyId, accessToken, from, to, limit = 30) {
     headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
     body: JSON.stringify({
       dateRanges: [{ startDate: from, endDate: to }],
-      dimensions: [{ name: "pageTitle" }, { name: "pagePath" }],
+      // pagePathPlusQueryString, not pagePath: every LibGuides content page is /c.php?g=…&p=…,
+      // so pagePath alone collapses all of them into a single "/c.php" row.
+      dimensions: [{ name: "pageTitle" }, { name: "pagePathPlusQueryString" }],
       metrics: [{ name: "screenPageViews" }, { name: "activeUsers" }],
       orderBys: [{ metric: { metricName: "screenPageViews" }, desc: true }],
       limit
@@ -138,6 +140,58 @@ function isDcContentItem(path) {
 
 function cleanTitle(title) {
   return String(title || "").replace(/ - Library Guides at BYU Law Library$/i, "").replace(/ - BYU Law Library LibGuides$/i, "").trim() || "Untitled";
+}
+
+const LIBGUIDES_PUBLIC_BASE = trimSlash(env("LIBGUIDES_PUBLIC_BASE", "https://guides.law.byu.edu"));
+// LibGuides page scripts whose identity lives in the query string; keep only the params
+// that identify the page so tracking/search params don't split one page into many rows.
+const LIBGUIDES_ID_PARAMS = { "/c.php": ["g", "p"], "/content.php": ["pid", "sid"], "/prf.php": ["account_id", "id"] };
+function canonicalGuidePath(rawPath) {
+  const raw = String(rawPath || "").replace(/&amp;/gi, "&");
+  const [pathPart, query = ""] = raw.split("?");
+  const pathOnly = pathPart.split("#")[0] || "/";
+  const keep = LIBGUIDES_ID_PARAMS[pathOnly.toLowerCase()];
+  if (!keep || !query) return pathOnly;
+  const params = new URLSearchParams(query);
+  const kept = keep.filter(k => params.get(k)).map(k => `${k}=${params.get(k)}`);
+  return kept.length ? `${pathOnly}?${kept.join("&")}` : pathOnly;
+}
+
+// Collect per-page views/users across several GA4 properties. The properties overlap (the
+// LibGuides property covers the whole site; the Research Guides and FCIL properties are
+// subsets of it), so a page's numbers are the max across properties, never the sum.
+async function fetchGa4GuidePages(propertyIds, accessToken, from, to, limit) {
+  const byPath = new Map();
+  for (const propId of propertyIds) {
+    const rows = await fetchGa4Pages(propId, accessToken, from, to, limit);
+    if (!rows) continue;
+    const seenThisProp = new Map();
+    for (const row of rows) {
+      const rawTitle = row.dimensionValues[0].value;
+      const path = canonicalGuidePath(row.dimensionValues[1].value);
+      const views = Number(row.metricValues[0].value) || 0;
+      const users = Number(row.metricValues[1].value) || 0;
+      if (rawTitle === "(not set)" || views === 0) continue;
+      // Within one property, rows that canonicalize to the same path are summed.
+      const cur = seenThisProp.get(path) || { path, views: 0, users: 0, titles: new Map() };
+      cur.views += views;
+      cur.users += users;
+      const title = cleanTitle(rawTitle);
+      cur.titles.set(title, (cur.titles.get(title) || 0) + views);
+      seenThisProp.set(path, cur);
+    }
+    for (const [path, cur] of seenThisProp) {
+      const prev = byPath.get(path);
+      if (!prev || cur.views > prev.views) byPath.set(path, cur);
+    }
+  }
+  return [...byPath.values()].map(p => ({
+    path: p.path,
+    // A path can carry several titles (e.g. /research tabs); use the most-viewed one.
+    title: [...p.titles.entries()].sort((a, b) => b[1] - a[1])[0][0],
+    views: p.views,
+    users: p.users,
+  }));
 }
 
 function inferSubject(title, path) {
@@ -446,7 +500,8 @@ async function fetchGa4Weekly(propertyIds, accessToken, from, to) {
     for (const row of d.rows || []) {
       const dateStr = row.dimensionValues[0].value; // YYYYMMDD
       const views = parseInt(row.metricValues[0].value) || 0;
-      allDays[dateStr] = (allDays[dateStr] || 0) + views;
+      // Max, not sum -- the properties overlap (see fetchGa4GuidePages).
+      allDays[dateStr] = Math.max(allDays[dateStr] || 0, views);
     }
   }
   const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -522,6 +577,7 @@ async function main() {
       env("GA4_PROPERTY_LIBGUIDES"),
       env("GA4_PROPERTY_FCIL"),
     ].filter(Boolean),
+    ga4Fcil: env("GA4_PROPERTY_FCIL"),
     ga4HuntersQuery: env("GA4_PROPERTY_HUNTERS_QUERY"),
     hqSiteUrl: env("HQ_SITE_URL", "https://huntersquery.byu.edu"),
     ga4DigitalCommons: env("GA4_PROPERTY_DIGITAL_COMMONS"),
@@ -590,25 +646,26 @@ async function main() {
 
   // GA4 Data API — per-guide page breakdown for top guides table
   if (googleToken && config.ga4Properties.length) {
-    const allRows = [];
-    for (const propId of config.ga4Properties) {
-      const rows = await fetchGa4Pages(propId, googleToken, reportMonth.start, reportMonth.end, 50);
-      if (rows) allRows.push(...rows);
-    }
-    if (allRows.length) {
-      const byTitle = new Map();
-      for (const row of allRows) {
-        const rawTitle = row.dimensionValues[0].value;
-        const path = row.dimensionValues[1].value;
-        const views = Number(row.metricValues[0].value) || 0;
-        const users = Number(row.metricValues[1].value) || 0;
-        if (rawTitle === "(not set)" || views === 0) continue;
-        const title = cleanTitle(rawTitle);
-        const existing = byTitle.get(title);
-        if (existing) { existing.views += views; existing.users += users; }
-        else byTitle.set(title, { title, path, views, users, subject: inferSubject(rawTitle, path) });
+    const [cur, prev] = await Promise.all([
+      fetchGa4GuidePages(config.ga4Properties, googleToken, reportMonth.start, reportMonth.end, 250),
+      fetchGa4GuidePages(config.ga4Properties, googleToken, reportMonth.previous_start, reportMonth.previous_end, 250),
+    ]);
+    // Pages tracked by the FCIL property are FCIL guides, whatever their title says.
+    const fcilPaths = new Set();
+    if (config.ga4Fcil) {
+      for (const p of await fetchGa4GuidePages([config.ga4Fcil], googleToken, reportMonth.start, reportMonth.end, 250)) {
+        fcilPaths.add(p.path);
       }
-      requests.ga4Guides = [...byTitle.values()].sort((a, b) => b.views - a.views);
+    }
+    if (cur.length) {
+      const prevByPath = new Map(prev.map(p => [p.path, p]));
+      requests.ga4Guides = cur
+        .map(g => ({
+          ...g,
+          previous: prevByPath.get(g.path)?.views || 0,
+          subject: fcilPaths.has(g.path) ? "FCIL" : inferSubject(g.title, g.path),
+        }))
+        .sort((a, b) => b.views - a.views);
     }
 
     // Real weekly trend from GA4 (date dimension, bucketed by week)
@@ -673,18 +730,23 @@ async function main() {
 
   // Inject GA4 per-guide data into report
   if (requests.ga4Guides && requests.ga4Guides.length) {
-    report.top_guides = requests.ga4Guides.slice(0, 25).map((g, i) => ({
+    const toGuideRow = (g, i) => ({
       guide_id: String(i + 1),
       title: g.title,
       url: g.path,
+      link: `${LIBGUIDES_PUBLIC_BASE}${g.path}`,
       views: g.views,
-      views_previous_month: 0,
-      change: 0,
-      change_percent: 0,
+      views_previous_month: g.previous,
+      change: g.views - g.previous,
+      // null when the page had no views last month -- "new", not "+100%".
+      change_percent: g.previous ? percentChange(g.views, g.previous) : null,
       rank: i + 1,
       subject: g.subject,
       updated: ""
-    }));
+    });
+    report.top_guides = requests.ga4Guides.slice(0, 25).map(toGuideRow);
+    // FCIL guides rarely reach the overall top 25, so keep their own list for the FCIL all-time page.
+    report.fcil = { top_guides: requests.ga4Guides.filter(g => g.subject === "FCIL").slice(0, 25).map(toGuideRow) };
     // Rebuild category_views from actual guide subjects
     const subjectTotals = new Map();
     for (const g of requests.ga4Guides) {

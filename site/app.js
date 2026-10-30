@@ -7,9 +7,21 @@ const HIDDEN_URL    = './data/hidden-paths.json';
 const CONFIG_URL    = './data/kiosk-config.json';
 const OVERRIDES_URL = './data/item-overrides.json';
 
+// Titles come from page titles in Google Analytics and from admin edits -- treat as text.
+function esc(s) {
+  return String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+// Identity of a LibGuides row (mirrors guide_key() in server/routes.py). Data fetched before
+// 2026-10-30 stored every content page as a bare "/c.php", so the title is the only key there.
+function guideKey(g) {
+  const u = g.url || '';
+  return (!u || /^\/(c|content)\.php$/.test(u)) ? (g.title || u) : u;
+}
+
 // Parse Digital Commons titles: "Article Title" by Author Name → {title, author}
 function parseDcTitle(raw) {
-  const m = raw.match(/^"(.+?)"\s+by\s+(.+)$/);
+  const m = String(raw || '').match(/^"(.+?)"\s+by\s+(.+)$/);
   if (m) return { title: m[1].trim(), author: m[2].trim() };
   return { title: raw, author: '' };
 }
@@ -25,10 +37,10 @@ function renderQr(containerId, url) {
   if (!el || !url) return;
   const display = url.replace(/^https?:\/\//, '').replace(/\/$/, '');
   el.innerHTML = `
-    <img src="${qrSrc(url)}" alt="Scan to visit" class="qr-img" width="92" height="92" loading="lazy">
+    <img src="${esc(qrSrc(url))}" alt="Scan to visit" class="qr-img" width="92" height="92" loading="lazy">
     <div class="qr-text">
       <span class="qr-label">Scan to visit</span>
-      <span class="qr-url">${display}</span>
+      <span class="qr-url">${esc(display)}</span>
     </div>`;
 }
 
@@ -47,8 +59,8 @@ function renderList(containerId, items) {
       <div class="item-row">
         <span class="item-rank">${rank}</span>
         <div class="item-info">
-          <div class="item-title">${title}</div>
-          ${sub ? `<div class="item-sub">${sub}</div>` : ''}
+          <div class="item-title">${esc(title)}</div>
+          ${sub ? `<div class="item-sub">${esc(sub)}</div>` : ''}
         </div>
       </div>`;
   }).join('');
@@ -67,7 +79,7 @@ async function boot() {
   if (dataRes.status === 'rejected' || !dataRes.value.ok) {
     const msg = dataRes.reason?.message || `HTTP ${dataRes.value?.status}`;
     document.getElementById('grid').innerHTML =
-      `<div class="error-row">Could not load stats: ${msg}</div>`;
+      `<div class="error-row">Could not load stats: ${esc(msg)}</div>`;
     return;
   }
   const data      = await dataRes.value.json();
@@ -101,9 +113,9 @@ async function boot() {
 
   // LibGuides — apply overrides
   let guides = (data.top_guides || [])
-    .filter(g => !hiddenLibguides.has(g.url || ''))
+    .filter(g => !hiddenLibguides.has(guideKey(g)))
     .map(g => {
-      const key = g.url || g.title || '';
+      const key = guideKey(g);
       const ov = lgOv[key] || {};
       return { ...g, title: ov.title || g.title, author: ov.author || '' };
     });
