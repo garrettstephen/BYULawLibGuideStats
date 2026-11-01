@@ -1,0 +1,1064 @@
+{
+  "generated_at": "2026-11-01T16:51:50.028Z",
+  "source": "libinsight-ga",
+  "reporting_month": {
+    "year": 2026,
+    "month": 10,
+    "start": "2026-10-01",
+    "end": "2026-10-31",
+    "label": "October 2026",
+    "previous_label": "September 2026",
+    "previous_start": "2026-09-01",
+    "previous_end": "2026-09-30"
+  },
+  "summary": {
+    "guide_views": 5375,
+    "guide_views_change_percent": -16.9,
+    "unique_users": 3539,
+    "unique_users_change_percent": -20.1,
+    "asset_clicks": 0,
+    "asset_clicks_change_percent": 0,
+    "average_time_on_guide": "Not tracked",
+    "average_time_change_percent": 0,
+    "published_guides": 283,
+    "published_guides_change_percent": 0,
+    "total_guides": 502
+  },
+  "top_guides": [
+    {
+      "guide_id": "1",
+      "title": "Family Law - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php?g=602326&p=4196010",
+      "link": "https://guides.law.byu.edu/c.php?g=602326&p=4196010",
+      "views": 415,
+      "views_previous_month": 410,
+      "change": 5,
+      "change_percent": 1.2,
+      "rank": 1,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "2",
+      "title": "A-Z Databases",
+      "url": "/az.php",
+      "link": "https://guides.law.byu.edu/az.php",
+      "views": 383,
+      "views_previous_month": 569,
+      "change": -186,
+      "change_percent": -32.7,
+      "rank": 2,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "3",
+      "title": "Immigration Law - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php?g=602326&p=4196109",
+      "link": "https://guides.law.byu.edu/c.php?g=602326&p=4196109",
+      "views": 231,
+      "views_previous_month": 208,
+      "change": 23,
+      "change_percent": 11.1,
+      "rank": 3,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "4",
+      "title": "Research Guides Home",
+      "url": "/research",
+      "link": "https://guides.law.byu.edu/research",
+      "views": 223,
+      "views_previous_month": 373,
+      "change": -150,
+      "change_percent": -40.2,
+      "rank": 4,
+      "subject": "General Research",
+      "updated": ""
+    },
+    {
+      "guide_id": "5",
+      "title": "#1: How To Read A Legal Citation - Locating Legal Information in Primary and Secondary Resources",
+      "url": "/c.php?g=315332&p=2106921",
+      "link": "https://guides.law.byu.edu/c.php?g=315332&p=2106921",
+      "views": 214,
+      "views_previous_month": 291,
+      "change": -77,
+      "change_percent": -26.5,
+      "rank": 5,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "6",
+      "title": "Any Legal Issue - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php?g=602326&p=4198001",
+      "link": "https://guides.law.byu.edu/c.php?g=602326&p=4198001",
+      "views": 195,
+      "views_previous_month": 208,
+      "change": -13,
+      "change_percent": -6.3,
+      "rank": 6,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "7",
+      "title": "Housing and Landlord-Tenant Law - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php?g=602326&p=4196073",
+      "link": "https://guides.law.byu.edu/c.php?g=602326&p=4196073",
+      "views": 134,
+      "views_previous_month": 201,
+      "change": -67,
+      "change_percent": -33.3,
+      "rank": 7,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "8",
+      "title": "Employment Law - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php?g=602326&p=4195995",
+      "link": "https://guides.law.byu.edu/c.php?g=602326&p=4195995",
+      "views": 103,
+      "views_previous_month": 131,
+      "change": -28,
+      "change_percent": -21.4,
+      "rank": 8,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "9",
+      "title": "Bar Exam Sample Essays - Study Aids for Law Students",
+      "url": "/c.php?g=951494&p=6919212",
+      "link": "https://guides.law.byu.edu/c.php?g=951494&p=6919212",
+      "views": 87,
+      "views_previous_month": 67,
+      "change": 20,
+      "change_percent": 29.9,
+      "rank": 9,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "10",
+      "title": "Debt and Bankruptcy - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php?g=602326&p=4195989",
+      "link": "https://guides.law.byu.edu/c.php?g=602326&p=4195989",
+      "views": 75,
+      "views_previous_month": 72,
+      "change": 3,
+      "change_percent": 4.2,
+      "rank": 10,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "11",
+      "title": "AI Prompts - AI Workshop, working with a Circulation Report",
+      "url": "/workshop/aiprompts",
+      "link": "https://guides.law.byu.edu/workshop/aiprompts",
+      "views": 74,
+      "views_previous_month": 0,
+      "change": 74,
+      "change_percent": null,
+      "rank": 11,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "12",
+      "title": "Small Claims - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php?g=602326&p=4226042",
+      "link": "https://guides.law.byu.edu/c.php?g=602326&p=4226042",
+      "views": 72,
+      "views_previous_month": 44,
+      "change": 28,
+      "change_percent": 63.6,
+      "rank": 12,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "13",
+      "title": "Cross-References - The Bluebook",
+      "url": "/c.php?g=1339449&p=9872383",
+      "link": "https://guides.law.byu.edu/c.php?g=1339449&p=9872383",
+      "views": 69,
+      "views_previous_month": 35,
+      "change": 34,
+      "change_percent": 97.1,
+      "rank": 13,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "14",
+      "title": "Examples and Explanations - Study Aids for Law Students",
+      "url": "/c.php?g=951494&p=6895307",
+      "link": "https://guides.law.byu.edu/c.php?g=951494&p=6895307",
+      "views": 61,
+      "views_previous_month": 96,
+      "change": -35,
+      "change_percent": -36.5,
+      "rank": 14,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "15",
+      "title": "Main Sources to Cite - The Bluebook",
+      "url": "/c.php?g=1339449&p=9872381",
+      "link": "https://guides.law.byu.edu/c.php?g=1339449&p=9872381",
+      "views": 53,
+      "views_previous_month": 48,
+      "change": 5,
+      "change_percent": 10.4,
+      "rank": 15,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "16",
+      "title": "Home - AI Workshop, working with a Circulation Report",
+      "url": "/workshop/home",
+      "link": "https://guides.law.byu.edu/workshop/home",
+      "views": 53,
+      "views_previous_month": 0,
+      "change": 53,
+      "change_percent": null,
+      "rank": 16,
+      "subject": "General Research",
+      "updated": ""
+    },
+    {
+      "guide_id": "17",
+      "title": "Generative AI - Legal Tech Resources for Students and Faculty",
+      "url": "/c.php?g=1386257&p=10251793",
+      "link": "https://guides.law.byu.edu/c.php?g=1386257&p=10251793",
+      "views": 51,
+      "views_previous_month": 139,
+      "change": -88,
+      "change_percent": -63.3,
+      "rank": 17,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "18",
+      "title": "Home - Study Aids for Law Students",
+      "url": "/studyaids",
+      "link": "https://guides.law.byu.edu/studyaids",
+      "views": 51,
+      "views_previous_month": 60,
+      "change": -9,
+      "change_percent": -15,
+      "rank": 18,
+      "subject": "General Research",
+      "updated": ""
+    },
+    {
+      "guide_id": "19",
+      "title": "Home - AI Workshop, working with a Circulation Report",
+      "url": "/workshop",
+      "link": "https://guides.law.byu.edu/workshop",
+      "views": 46,
+      "views_previous_month": 0,
+      "change": 46,
+      "change_percent": null,
+      "rank": 19,
+      "subject": "General Research",
+      "updated": ""
+    },
+    {
+      "guide_id": "20",
+      "title": "Elder Law - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php?g=602326&p=4222138",
+      "link": "https://guides.law.byu.edu/c.php?g=602326&p=4222138",
+      "views": 44,
+      "views_previous_month": 60,
+      "change": -16,
+      "change_percent": -26.7,
+      "rank": 20,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "21",
+      "title": "Estate Planning - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php?g=602326&p=4196001",
+      "link": "https://guides.law.byu.edu/c.php?g=602326&p=4196001",
+      "views": 44,
+      "views_previous_month": 44,
+      "change": 0,
+      "change_percent": 0,
+      "rank": 21,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "22",
+      "title": "Criminal Law - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php?g=602326&p=4222131",
+      "link": "https://guides.law.byu.edu/c.php?g=602326&p=4222131",
+      "views": 43,
+      "views_previous_month": 45,
+      "change": -2,
+      "change_percent": -4.4,
+      "rank": 22,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "23",
+      "title": "Consumer Law - Free and Low-Cost Legal Resources in Utah",
+      "url": "/c.php?g=602326&p=4195894",
+      "link": "https://guides.law.byu.edu/c.php?g=602326&p=4195894",
+      "views": 42,
+      "views_previous_month": 47,
+      "change": -5,
+      "change_percent": -10.6,
+      "rank": 23,
+      "subject": "Public Services",
+      "updated": ""
+    },
+    {
+      "guide_id": "24",
+      "title": "The Thesis - Writing Academic Papers for Law School",
+      "url": "/c.php?g=1167558&p=8525916",
+      "link": "https://guides.law.byu.edu/c.php?g=1167558&p=8525916",
+      "views": 40,
+      "views_previous_month": 58,
+      "change": -18,
+      "change_percent": -31,
+      "rank": 24,
+      "subject": "Other",
+      "updated": ""
+    },
+    {
+      "guide_id": "25",
+      "title": "Aspen Learning Library - Study Aids for Law Students",
+      "url": "/c.php?g=951494&p=6863561",
+      "link": "https://guides.law.byu.edu/c.php?g=951494&p=6863561",
+      "views": 40,
+      "views_previous_month": 71,
+      "change": -31,
+      "change_percent": -43.7,
+      "rank": 25,
+      "subject": "Other",
+      "updated": ""
+    }
+  ],
+  "top_assets": [],
+  "category_views": [
+    {
+      "category": "Other",
+      "views": 1842
+    },
+    {
+      "category": "Public Services",
+      "views": 1749
+    },
+    {
+      "category": "General Research",
+      "views": 630
+    },
+    {
+      "category": "FCIL",
+      "views": 622
+    },
+    {
+      "category": "Public Law",
+      "views": 135
+    },
+    {
+      "category": "Business & Tax",
+      "views": 57
+    },
+    {
+      "category": "Litigation",
+      "views": 20
+    },
+    {
+      "category": "IP Law",
+      "views": 12
+    }
+  ],
+  "weekly_trend": [
+    {
+      "label": "Wk 1",
+      "range": "Oct 1–7",
+      "views": 1389,
+      "previous_views": 0
+    },
+    {
+      "label": "Wk 2",
+      "range": "Oct 8–14",
+      "views": 1196,
+      "previous_views": 0
+    },
+    {
+      "label": "Wk 3",
+      "range": "Oct 15–21",
+      "views": 1215,
+      "previous_views": 0
+    },
+    {
+      "label": "Wk 4",
+      "range": "Oct 22–28",
+      "views": 1152,
+      "previous_views": 0
+    },
+    {
+      "label": "Wk 5",
+      "range": "Oct 29–31",
+      "views": 510,
+      "previous_views": 0
+    }
+  ],
+  "updates": [],
+  "methodology": "Guide views are counted when a guide page is loaded. Asset clicks are counted when users follow links to reusable LibGuides assets or external resources.",
+  "privacy": "This dashboard reports aggregate, de-identified usage data only. No personal identifiers are collected or displayed.",
+  "fcil": {
+    "top_guides": [
+      {
+        "guide_id": "1",
+        "title": "Books - International Arbitration",
+        "url": "/c.php?g=1299620&p=9879520",
+        "link": "https://guides.law.byu.edu/c.php?g=1299620&p=9879520",
+        "views": 16,
+        "views_previous_month": 15,
+        "change": 1,
+        "change_percent": 6.7,
+        "rank": 1,
+        "subject": "FCIL",
+        "updated": ""
+      },
+      {
+        "guide_id": "2",
+        "title": "Legal Resources - Bolivia",
+        "url": "/bolivia",
+        "link": "https://guides.law.byu.edu/bolivia",
+        "views": 16,
+        "views_previous_month": 9,
+        "change": 7,
+        "change_percent": 77.8,
+        "rank": 2,
+        "subject": "FCIL",
+        "updated": ""
+      },
+      {
+        "guide_id": "3",
+        "title": "Journals & Yearbooks - International Arbitration",
+        "url": "/c.php?g=1299620&p=9872474",
+        "link": "https://guides.law.byu.edu/c.php?g=1299620&p=9872474",
+        "views": 15,
+        "views_previous_month": 10,
+        "change": 5,
+        "change_percent": 50,
+        "rank": 3,
+        "subject": "FCIL",
+        "updated": ""
+      },
+      {
+        "guide_id": "4",
+        "title": "Arbitral Institutions - International Arbitration",
+        "url": "/c.php?g=1299620&p=9934558",
+        "link": "https://guides.law.byu.edu/c.php?g=1299620&p=9934558",
+        "views": 13,
+        "views_previous_month": 14,
+        "change": -1,
+        "change_percent": -7.1,
+        "rank": 4,
+        "subject": "FCIL",
+        "updated": ""
+      },
+      {
+        "guide_id": "5",
+        "title": "Books for Students New to IA - International Arbitration",
+        "url": "/c.php?g=1299620&p=9882769",
+        "link": "https://guides.law.byu.edu/c.php?g=1299620&p=9882769",
+        "views": 13,
+        "views_previous_month": 17,
+        "change": -4,
+        "change_percent": -23.5,
+        "rank": 5,
+        "subject": "FCIL",
+        "updated": ""
+      },
+      {
+        "guide_id": "6",
+        "title": "Proceedings & Awards - International Arbitration",
+        "url": "/c.php?g=1299620&p=9817967",
+        "link": "https://guides.law.byu.edu/c.php?g=1299620&p=9817967",
+        "views": 13,
+        "views_previous_month": 0,
+        "change": 13,
+        "change_percent": null,
+        "rank": 6,
+        "subject": "FCIL",
+        "updated": ""
+      },
+      {
+        "guide_id": "7",
+        "title": "Law Journals/Reviews - Foreign & International Law",
+        "url": "/intl/journals",
+        "link": "https://guides.law.byu.edu/intl/journals",
+        "views": 12,
+        "views_previous_month": 22,
+        "change": -10,
+        "change_percent": -45.5,
+        "rank": 7,
+        "subject": "FCIL",
+        "updated": ""
+      },
+      {
+        "guide_id": "8",
+        "title": "Legal Resources - Belarus",
+        "url": "/belarus",
+        "link": "https://guides.law.byu.edu/belarus",
+        "views": 11,
+        "views_previous_month": 8,
+        "change": 3,
+        "change_percent": 37.5,
+        "rank": 8,
+        "subject": "FCIL",
+        "updated": ""
+      },
+      {
+        "guide_id": "9",
+        "title": "Foreign Law - Foreign & International Law",
+        "url": "/intl",
+        "link": "https://guides.law.byu.edu/intl",
+        "views": 10,
+        "views_previous_month": 15,
+        "change": -5,
+        "change_percent": -33.3,
+        "rank": 9,
+        "subject": "FCIL",
+        "updated": ""
+      },
+      {
+        "guide_id": "10",
+        "title": "Recommended Resources - International Arbitration",
+        "url": "/c.php?g=1299620&p=9931334",
+        "link": "https://guides.law.byu.edu/c.php?g=1299620&p=9931334",
+        "views": 10,
+        "views_previous_month": 6,
+        "change": 4,
+        "change_percent": 66.7,
+        "rank": 10,
+        "subject": "FCIL",
+        "updated": ""
+      },
+      {
+        "guide_id": "11",
+        "title": "Legal Resources - Macau",
+        "url": "/c.php?g=1484549",
+        "link": "https://guides.law.byu.edu/c.php?g=1484549",
+        "views": 10,
+        "views_previous_month": 3,
+        "change": 7,
+        "change_percent": 233.3,
+        "rank": 11,
+        "subject": "FCIL",
+        "updated": ""
+      },
+      {
+        "guide_id": "12",
+        "title": "Treatises - International Arbitration",
+        "url": "/c.php?g=1299620&p=9547930",
+        "link": "https://guides.law.byu.edu/c.php?g=1299620&p=9547930",
+        "views": 9,
+        "views_previous_month": 0,
+        "change": 9,
+        "change_percent": null,
+        "rank": 12,
+        "subject": "FCIL",
+        "updated": ""
+      },
+      {
+        "guide_id": "13",
+        "title": "Legal Resources - Mongolia",
+        "url": "/c.php?g=1484535",
+        "link": "https://guides.law.byu.edu/c.php?g=1484535",
+        "views": 9,
+        "views_previous_month": 6,
+        "change": 3,
+        "change_percent": 50,
+        "rank": 13,
+        "subject": "FCIL",
+        "updated": ""
+      },
+      {
+        "guide_id": "14",
+        "title": "Legal Resources - Brunei",
+        "url": "/brunei",
+        "link": "https://guides.law.byu.edu/brunei",
+        "views": 8,
+        "views_previous_month": 8,
+        "change": 0,
+        "change_percent": 0,
+        "rank": 14,
+        "subject": "FCIL",
+        "updated": ""
+      },
+      {
+        "guide_id": "15",
+        "title": "Legal Resources - Comoros",
+        "url": "/comoros",
+        "link": "https://guides.law.byu.edu/comoros",
+        "views": 8,
+        "views_previous_month": 2,
+        "change": 6,
+        "change_percent": 300,
+        "rank": 15,
+        "subject": "FCIL",
+        "updated": ""
+      },
+      {
+        "guide_id": "16",
+        "title": "Home - International Arbitration",
+        "url": "/c.php?g=1299620",
+        "link": "https://guides.law.byu.edu/c.php?g=1299620",
+        "views": 7,
+        "views_previous_month": 0,
+        "change": 7,
+        "change_percent": null,
+        "rank": 16,
+        "subject": "FCIL",
+        "updated": ""
+      },
+      {
+        "guide_id": "17",
+        "title": "Legal Resources - Andorra",
+        "url": "/Andorra",
+        "link": "https://guides.law.byu.edu/Andorra",
+        "views": 7,
+        "views_previous_month": 4,
+        "change": 3,
+        "change_percent": 75,
+        "rank": 17,
+        "subject": "FCIL",
+        "updated": ""
+      },
+      {
+        "guide_id": "18",
+        "title": "Legal Resources - Hong Kong",
+        "url": "/c.php?g=675734&p=4761360",
+        "link": "https://guides.law.byu.edu/c.php?g=675734&p=4761360",
+        "views": 7,
+        "views_previous_month": 1,
+        "change": 6,
+        "change_percent": 600,
+        "rank": 18,
+        "subject": "FCIL",
+        "updated": ""
+      },
+      {
+        "guide_id": "19",
+        "title": "Legal Resources - Iraq",
+        "url": "/iraq",
+        "link": "https://guides.law.byu.edu/iraq",
+        "views": 7,
+        "views_previous_month": 8,
+        "change": -1,
+        "change_percent": -12.5,
+        "rank": 19,
+        "subject": "FCIL",
+        "updated": ""
+      },
+      {
+        "guide_id": "20",
+        "title": "Legal Resources - Laos",
+        "url": "/laos",
+        "link": "https://guides.law.byu.edu/laos",
+        "views": 7,
+        "views_previous_month": 4,
+        "change": 3,
+        "change_percent": 75,
+        "rank": 20,
+        "subject": "FCIL",
+        "updated": ""
+      },
+      {
+        "guide_id": "21",
+        "title": "Legal Resources - Afghanistan",
+        "url": "/Afghanistan",
+        "link": "https://guides.law.byu.edu/Afghanistan",
+        "views": 6,
+        "views_previous_month": 6,
+        "change": 0,
+        "change_percent": 0,
+        "rank": 21,
+        "subject": "FCIL",
+        "updated": ""
+      },
+      {
+        "guide_id": "22",
+        "title": "Legal Resources - Albania",
+        "url": "/Albania",
+        "link": "https://guides.law.byu.edu/Albania",
+        "views": 6,
+        "views_previous_month": 7,
+        "change": -1,
+        "change_percent": -14.3,
+        "rank": 22,
+        "subject": "FCIL",
+        "updated": ""
+      },
+      {
+        "guide_id": "23",
+        "title": "Legal Resources - Antigua and Barbuda",
+        "url": "/antigua_and_barbuda",
+        "link": "https://guides.law.byu.edu/antigua_and_barbuda",
+        "views": 6,
+        "views_previous_month": 4,
+        "change": 2,
+        "change_percent": 50,
+        "rank": 23,
+        "subject": "FCIL",
+        "updated": ""
+      },
+      {
+        "guide_id": "24",
+        "title": "Legal Resources - Egypt",
+        "url": "/egypt",
+        "link": "https://guides.law.byu.edu/egypt",
+        "views": 6,
+        "views_previous_month": 7,
+        "change": -1,
+        "change_percent": -14.3,
+        "rank": 24,
+        "subject": "FCIL",
+        "updated": ""
+      },
+      {
+        "guide_id": "25",
+        "title": "Legal Resources - Algeria",
+        "url": "/Algeria",
+        "link": "https://guides.law.byu.edu/Algeria",
+        "views": 5,
+        "views_previous_month": 8,
+        "change": -3,
+        "change_percent": -37.5,
+        "rank": 25,
+        "subject": "FCIL",
+        "updated": ""
+      }
+    ]
+  },
+  "hunters_query": {
+    "top_articles": [
+      {
+        "rank": 1,
+        "title": "Changes To Bluebook In The New 22nd Edition",
+        "path": "/changes-to-bluebook-in-the-new-22nd-edition/",
+        "author": "",
+        "views": 62,
+        "users": 56
+      },
+      {
+        "rank": 2,
+        "title": "A Guide To The Pca Icj And Icc",
+        "path": "/a-guide-to-the-pca-icj-and-icc/",
+        "author": "",
+        "views": 44,
+        "users": 37
+      },
+      {
+        "rank": 3,
+        "title": "Understanding How Congressional Bills Are Numbered",
+        "path": "/understanding-how-congressional-bills-are-numbered/",
+        "author": "",
+        "views": 42,
+        "users": 34
+      },
+      {
+        "rank": 4,
+        "title": "Vendor Neutral Citation",
+        "path": "/vendor-neutral-citation/",
+        "author": "",
+        "views": 33,
+        "users": 33
+      },
+      {
+        "rank": 5,
+        "title": "How To Use Ssrn A Source For The Hottest New Legal Scholarship",
+        "path": "/how-to-use-ssrn-a-source-for-the-hottest-new-legal-scholarship/",
+        "author": "",
+        "views": 26,
+        "users": 25
+      },
+      {
+        "rank": 6,
+        "title": "Ai Resources For Students",
+        "path": "/ai-resources-for-students/",
+        "author": "",
+        "views": 23,
+        "users": 19
+      },
+      {
+        "rank": 7,
+        "title": "Fair Trade And Child Labor",
+        "path": "/fair-trade-and-child-labor/",
+        "author": "",
+        "views": 22,
+        "users": 22
+      },
+      {
+        "rank": 8,
+        "title": "Access Your Ny Times Subscription Now",
+        "path": "/access-your-ny-times-subscription-now/",
+        "author": "",
+        "views": 18,
+        "users": 12
+      },
+      {
+        "rank": 9,
+        "title": "Beginners Bluebook Guide",
+        "path": "/beginners-bluebook-guide/",
+        "author": "",
+        "views": 14,
+        "users": 12
+      },
+      {
+        "rank": 10,
+        "title": "Processing The Backlog Of Utah Court Briefs",
+        "path": "/processing-the-backlog-of-utah-court-briefs/",
+        "author": "",
+        "views": 13,
+        "users": 12
+      },
+      {
+        "rank": 11,
+        "title": "Hidden And Unique Places To Study In The Law Library",
+        "path": "/hidden-and-unique-places-to-study-in-the-law-library/",
+        "author": "",
+        "views": 12,
+        "users": 7
+      },
+      {
+        "rank": 12,
+        "title": "Casetext With Cara Ai Keyword Free Legal Research",
+        "path": "/casetext-with-cara-ai-keyword-free-legal-research/",
+        "author": "",
+        "views": 11,
+        "users": 11
+      },
+      {
+        "rank": 13,
+        "title": "Byu Law Alum To Clerk For Scotus",
+        "path": "/byu-law-alum-to-clerk-for-scotus/",
+        "author": "",
+        "views": 9,
+        "users": 8
+      },
+      {
+        "rank": 14,
+        "title": "Byu Law Library Display Perspectives On The 250th Birthday Of The Declaration Of Independence",
+        "path": "/byu-law-library-display-perspectives-on-the-250th-birthday-of-the-declaration-of-independence/",
+        "author": "",
+        "views": 9,
+        "users": 9
+      },
+      {
+        "rank": 15,
+        "title": "Happy Constitution Day 2",
+        "path": "/happy-constitution-day-2/",
+        "author": "",
+        "views": 9,
+        "users": 9
+      }
+    ]
+  },
+  "digital_commons": {
+    "top_items": [
+      {
+        "rank": 1,
+        "title": "\"Why the National Popular Vote Compact is Unconstitutional\" by Norman R. Williams",
+        "path": "/lawreview/vol2012/iss5/3/",
+        "section": "lawreview",
+        "views": 213,
+        "users": 178
+      },
+      {
+        "rank": 2,
+        "title": "\"Regulating Beauty: Advertising Restrictions, the First Amendment, and the Rise of Social Media Model\" by Annie Miner",
+        "path": "/lawreview/vol51/iss4/9/",
+        "section": "lawreview",
+        "views": 171,
+        "users": 102
+      },
+      {
+        "rank": 3,
+        "title": "Law Review Symposium",
+        "path": "/lawreview/lawreviewsymposium.html",
+        "section": "lawreview",
+        "views": 81,
+        "users": 57
+      },
+      {
+        "rank": 4,
+        "title": "\"Freedom of Religion in India: Current Issues and Supreme Court Acting \" by Faizan Mustafa and Jagteshwar Singh Sohi",
+        "path": "/lawreview/vol2017/iss4/9/",
+        "section": "lawreview",
+        "views": 74,
+        "users": 44
+      },
+      {
+        "rank": 5,
+        "title": "\"Did Anderson v. TikTok Get It Right? Holding Social Media Providers Ac\" by Allison Mitton",
+        "path": "/lawreview/vol51/iss1/7/",
+        "section": "lawreview",
+        "views": 71,
+        "users": 57
+      },
+      {
+        "rank": 6,
+        "title": "\"NIL Tampering\" by Josh Lens",
+        "path": "/lawreview/vol49/iss6/6/",
+        "section": "lawreview",
+        "views": 60,
+        "users": 50
+      },
+      {
+        "rank": 7,
+        "title": "\"Fan Films and Fanworks in the Age of Social Media: How Copyright Owner\" by Kagen Despain",
+        "path": "/lawreview/vol2020/iss2/9/",
+        "section": "lawreview",
+        "views": 57,
+        "users": 42
+      },
+      {
+        "rank": 8,
+        "title": "\"Taxing Data\" by Omri Marian",
+        "path": "/lawreview/vol47/iss2/7/",
+        "section": "lawreview",
+        "views": 49,
+        "users": 40
+      },
+      {
+        "rank": 9,
+        "title": "\"Agreeing to Disagree: Abortion Jurisprudence in Jewish and Islamic Law\" by Rabea Benhalim",
+        "path": "/lawreview/vol50/iss5/7/",
+        "section": "lawreview",
+        "views": 49,
+        "users": 38
+      },
+      {
+        "rank": 10,
+        "title": "\"The Prosecutor Vacancy Crisis\" by Adam M. Gershowitz",
+        "path": "/lawreview/vol50/iss2/8/",
+        "section": "lawreview",
+        "views": 46,
+        "users": 35
+      },
+      {
+        "rank": 11,
+        "title": "Faculty Scholarship",
+        "path": "/faculty_scholarship/",
+        "section": "faculty_scholarship",
+        "views": 42,
+        "users": 20
+      },
+      {
+        "rank": 12,
+        "title": "\"Not Her Fault: AI Deepfakes, Nonconsensual Pornography, and Federal La\" by Taylor Percival James",
+        "path": "/lawreview/vol50/iss4/10/",
+        "section": "lawreview",
+        "views": 42,
+        "users": 30
+      },
+      {
+        "rank": 13,
+        "title": "\"Brain–Computer Interfaces: Opportunities and Challenges\" by Stephanie Plamondon",
+        "path": "/faculty_scholarship/453/",
+        "section": "faculty_scholarship",
+        "views": 36,
+        "users": 11
+      },
+      {
+        "rank": 14,
+        "title": "\"The Mansion That Disney Built: Revitalizing Antitrust Enforcement in t\" by Drew Chandler",
+        "path": "/lawreview/vol51/iss2/10/",
+        "section": "lawreview",
+        "views": 36,
+        "users": 22
+      },
+      {
+        "rank": 15,
+        "title": "\"Where Do Families Come From? The Law of Family Definition\" by Katharine Baker",
+        "path": "/lawreview/vol49/iss5/6/",
+        "section": "lawreview",
+        "views": 33,
+        "users": 30
+      },
+      {
+        "rank": 16,
+        "title": "\"“We Are Physically Alive but Mentally Dead”: The International Community Must Take Action to Ensure\" by Solveig J. Clifford",
+        "path": "/lawreview/vol51/iss4/5/",
+        "section": "lawreview",
+        "views": 33,
+        "users": 30
+      },
+      {
+        "rank": 17,
+        "title": "BYU Law Review: All Issues",
+        "path": "/lawreview/all_issues.html",
+        "section": "lawreview",
+        "views": 32,
+        "users": 19
+      },
+      {
+        "rank": 18,
+        "title": "\"Artificial Intelligence, Autonomous Creation, and the Future Path of C\" by Peter K. Yu",
+        "path": "/lawreview/vol50/iss3/9/",
+        "section": "lawreview",
+        "views": 32,
+        "users": 27
+      },
+      {
+        "rank": 19,
+        "title": "\"An Empirical Study of Copyright's Substantial Similarity Test\" by Clark D. Asay",
+        "path": "/faculty_scholarship/370/",
+        "section": "faculty_scholarship",
+        "views": 31,
+        "users": 26
+      },
+      {
+        "rank": 20,
+        "title": "\"Going Generic: A Linguistics Approach to Genericide in Trademark Law\" by James A. Heilpern, William G. Eggington et al.",
+        "path": "/lawreview/vol50/iss1/8/",
+        "section": "lawreview",
+        "views": 31,
+        "users": 22
+      }
+    ]
+  },
+  "hidden_paths": {
+    "libguides": [
+      "/srch.php",
+      "/research",
+      "/az.php"
+    ],
+    "hunters_query": [
+      "/adobe/"
+    ],
+    "digital_commons": [
+      "/faculty_scholarship/",
+      "/lawreview/all_issues.html",
+      "/clarkmemorandum/index.2.html",
+      "/lawreview/editorialboard.html",
+      "/lawreview/lawreviewsymposium.html",
+      "/lawreview/policies.html",
+      "/lawreview/contact.html",
+      "/lawreview/about.html",
+      "/lawreview/aimsandscope.html",
+      "/lawreview/vol51/iss5/",
+      "/lawreview/vol2010/iss3/"
+    ]
+  }
+}
