@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-01T16:51:50.028Z",
+  "generated_at": "2026-11-02T20:25:37.883Z",
   "source": "libinsight-ga",
   "reporting_month": {
     "year": 2026,
@@ -12,10 +12,10 @@
     "previous_end": "2026-09-30"
   },
   "summary": {
-    "guide_views": 5375,
-    "guide_views_change_percent": -16.9,
-    "unique_users": 3539,
-    "unique_users_change_percent": -20.1,
+    "guide_views": 5462,
+    "guide_views_change_percent": -15.5,
+    "unique_users": 3599,
+    "unique_users_change_percent": -18.8,
     "asset_clicks": 0,
     "asset_clicks_change_percent": 0,
     "average_time_on_guide": "Not tracked",
@@ -781,23 +781,23 @@
         "title": "Vendor Neutral Citation",
         "path": "/vendor-neutral-citation/",
         "author": "",
-        "views": 33,
-        "users": 33
+        "views": 34,
+        "users": 34
       },
       {
         "rank": 5,
         "title": "How To Use Ssrn A Source For The Hottest New Legal Scholarship",
         "path": "/how-to-use-ssrn-a-source-for-the-hottest-new-legal-scholarship/",
         "author": "",
-        "views": 26,
-        "users": 25
+        "views": 27,
+        "users": 26
       },
       {
         "rank": 6,
         "title": "Ai Resources For Students",
         "path": "/ai-resources-for-students/",
         "author": "",
-        "views": 23,
+        "views": 24,
         "users": 19
       },
       {
@@ -821,11 +821,19 @@
         "title": "Beginners Bluebook Guide",
         "path": "/beginners-bluebook-guide/",
         "author": "",
-        "views": 14,
-        "users": 12
+        "views": 15,
+        "users": 13
       },
       {
         "rank": 10,
+        "title": "Hidden And Unique Places To Study In The Law Library",
+        "path": "/hidden-and-unique-places-to-study-in-the-law-library/",
+        "author": "",
+        "views": 13,
+        "users": 7
+      },
+      {
+        "rank": 11,
         "title": "Processing The Backlog Of Utah Court Briefs",
         "path": "/processing-the-backlog-of-utah-court-briefs/",
         "author": "",
@@ -833,28 +841,20 @@
         "users": 12
       },
       {
-        "rank": 11,
-        "title": "Hidden And Unique Places To Study In The Law Library",
-        "path": "/hidden-and-unique-places-to-study-in-the-law-library/",
+        "rank": 12,
+        "title": "Byu Law Alum To Clerk For Scotus",
+        "path": "/byu-law-alum-to-clerk-for-scotus/",
         "author": "",
         "views": 12,
-        "users": 7
+        "users": 9
       },
       {
-        "rank": 12,
+        "rank": 13,
         "title": "Casetext With Cara Ai Keyword Free Legal Research",
         "path": "/casetext-with-cara-ai-keyword-free-legal-research/",
         "author": "",
         "views": 11,
         "users": 11
-      },
-      {
-        "rank": 13,
-        "title": "Byu Law Alum To Clerk For Scotus",
-        "path": "/byu-law-alum-to-clerk-for-scotus/",
-        "author": "",
-        "views": 9,
-        "users": 8
       },
       {
         "rank": 14,
